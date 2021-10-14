@@ -1,12 +1,12 @@
 <?php
 
-namespace Tests\Feature\Models;
+namespace Tests\Feature\Students;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class SubjectModelTest extends TestCase
+class PutStudentRequestTest extends TestCase
 {
     /**
      * A basic feature test example.

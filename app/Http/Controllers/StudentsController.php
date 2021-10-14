@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Inertia\Inertia;
+use App\Models\Student;
+use Illuminate\Http\Request;
+use App\Http\Resources\StudentResource;
+
+class StudentsController extends Controller
+{
+    public function index() {
+
+        $students = Student::all();
+
+        return Inertia::render('Students/Index', [
+            'students' => StudentResource::collection($students),
+        ]);
+    }
+
+    public function show(Student $student) {
+        
+        return Inertia::render('Students/Show', [
+            'student' => new StudentResource($student),
+        ]);
+    }
+}
