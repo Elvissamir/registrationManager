@@ -3,6 +3,7 @@
 namespace Tests\Feature\Students;
 
 use Tests\TestCase;
+use App\Models\User;
 use App\Models\Student;
 use Inertia\Testing\Assert;
 use App\Http\Resources\StudentResource;
@@ -17,9 +18,11 @@ class GetStudentRequestTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
+        $user = User::factory()->create();
+
         $students = Student::factory()->count(2)->create();
 
-        $response = $this->get(route('students.index'));
+        $response = $this->actingAs($user)->get(route('students.index'));
 
         $response->assertInertia(fn(Assert $page) => 
             $page->component('Students/Index')
@@ -32,9 +35,11 @@ class GetStudentRequestTest extends TestCase
        
         $this->withoutExceptionHandling();
 
+        $user = User::factory()->create();
+
         $student = Student::factory()->create();
 
-        $response = $this->get(route('students.show', $student->id));
+        $response = $this->actingAs($user)->get(route('students.show', $student->id));
 
         $response->assertInertia(fn(Assert $page) => 
             $page->component('Students/Show')

@@ -19,11 +19,21 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
 
+
 // STUDENTS
+Route::post('students', [StudentsController::class, 'store'])
+     ->middleware('auth:sanctum')
+     ->name('students.store');
+
 Route::get('students', [StudentsController::class, 'index'])
      ->middleware('auth:sanctum')
      ->name('students.index');
+     
+Route::get('students/create', [StudentsController::class, 'create'])
+     ->middleware('auth:sanctum')
+    ->name('students.create');
 
 Route::get('students/{student}', [StudentsController::class, 'show'])
      ->middleware('auth:sanctum')
      ->name('students.show');
+     
