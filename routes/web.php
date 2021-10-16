@@ -44,3 +44,7 @@ Route::get('students/{student}/edit', [StudentsController::class, 'edit'])
 Route::put('students/{student}', [StudentsController::class, 'update'])
     ->middleware('auth:sanctum')
     ->name('students.update');
+
+Route::delete('students/{student}', [StudentsController::class, 'destroy'])
+    ->middleware('auth:sanctum')
+    ->name('students.destroy');
