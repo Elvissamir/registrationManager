@@ -34,6 +34,13 @@ Route::get('students/create', [StudentsController::class, 'create'])
     ->name('students.create');
 
 Route::get('students/{student}', [StudentsController::class, 'show'])
-     ->middleware('auth:sanctum')
-     ->name('students.show');
-     
+    ->middleware('auth:sanctum')
+    ->name('students.show');
+    
+Route::get('students/{student}/edit', [StudentsController::class, 'edit'])
+    ->middleware('auth:sanctum')
+    ->name('students.edit');
+
+Route::put('students/{student}', [StudentsController::class, 'update'])
+    ->middleware('auth:sanctum')
+    ->name('students.update');

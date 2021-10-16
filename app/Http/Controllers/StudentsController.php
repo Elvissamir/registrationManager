@@ -7,6 +7,7 @@ use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Http\Resources\StudentResource;
 use App\Http\Requests\StoreStudentRequest;
+use App\Http\Requests\UpdateStudentRequest;
 
 class StudentsController extends Controller
 {
@@ -39,6 +40,20 @@ class StudentsController extends Controller
             'phone_mobile' => $request->phone_mobile,
             'phone_house' => $request->phone_house,
         ]);
+
+        return redirect(route('students.index'));
+    }
+
+    public function edit(Student $student) {
+        
+        return Inertia::render('Students/Edit', [
+            'student' => new StudentResource($student),
+        ]);
+    }
+
+    public function update(UpdateStudentRequest $request, Student $student) {
+        
+        $student->update($request->all());
 
         return redirect(route('students.index'));
     }
