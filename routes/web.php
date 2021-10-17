@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\StudentsController;
+use App\Http\Controllers\SubjectsController;
 
 //
 Route::get('/', function () {
@@ -21,62 +22,12 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 
+
+// SUBJECTS
+Route::resource('subjects', SubjectsController::class)->middleware('auth:sanctum');
+
 // COURSES
-Route::post('courses', [CoursesController::class, 'store'])
-     ->middleware('auth:sanctum')
-     ->name('courses.store');
-
-Route::get('courses', [CoursesController::class, 'index'])
-    ->middleware('auth:sanctum')
-    ->name('courses.index');
-
-Route::get('courses/create', [CoursesController::class, 'create'])
-    ->middleware('auth:sanctum')
-    ->name('courses.create');
-
-Route::get('courses/{course}', [CoursesController::class, 'show'])
-    ->middleware('auth:sanctum')
-    ->name('courses.show');
-    
-Route::get('courses/{course}/edit', [CoursesController::class, 'edit'])
-    ->middleware('auth:sanctum')
-    ->name('courses.edit');
-
-Route::put('courses/{course}', [CoursesController::class, 'update'])
-    ->middleware('auth:sanctum')
-    ->name('courses.update');
-
-Route::delete('courses/{course}', [CoursesController::class, 'destroy'])
-    ->middleware('auth:sanctum')
-    ->name('courses.destroy');
-
-
+Route::resource('courses', CoursesController::class)->middleware('auth:sanctum');
 
 // STUDENTS
-Route::post('students', [StudentsController::class, 'store'])
-     ->middleware('auth:sanctum')
-     ->name('students.store');
-
-Route::get('students', [StudentsController::class, 'index'])
-     ->middleware('auth:sanctum')
-     ->name('students.index');
-     
-Route::get('students/create', [StudentsController::class, 'create'])
-     ->middleware('auth:sanctum')
-    ->name('students.create');
-
-Route::get('students/{student}', [StudentsController::class, 'show'])
-    ->middleware('auth:sanctum')
-    ->name('students.show');
-    
-Route::get('students/{student}/edit', [StudentsController::class, 'edit'])
-    ->middleware('auth:sanctum')
-    ->name('students.edit');
-
-Route::put('students/{student}', [StudentsController::class, 'update'])
-    ->middleware('auth:sanctum')
-    ->name('students.update');
-
-Route::delete('students/{student}', [StudentsController::class, 'destroy'])
-    ->middleware('auth:sanctum')
-    ->name('students.destroy');
+Route::resource('students', StudentsController::class)->middleware('auth:sanctum');
