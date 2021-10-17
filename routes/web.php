@@ -46,6 +46,10 @@ Route::put('courses/{course}', [CoursesController::class, 'update'])
     ->middleware('auth:sanctum')
     ->name('courses.update');
 
+Route::delete('courses/{course}', [CoursesController::class, 'destroy'])
+    ->middleware('auth:sanctum')
+    ->name('courses.destroy');
+
 
 
 // STUDENTS
