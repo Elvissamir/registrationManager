@@ -11,6 +11,7 @@ use App\Http\Resources\CourseResource;
 use App\Http\Resources\DegreeResource;
 use App\Http\Resources\SectionResource;
 use App\Http\Requests\StoreCourseRequest;
+use App\Http\Requests\UpdateCourseRequest;
 
 class CoursesController extends Controller
 {
@@ -81,7 +82,14 @@ class CoursesController extends Controller
      */
     public function edit(Course $course)
     {
-        //
+        $sections = Section::all();
+        $degrees = Degree::all();
+
+        return Inertia::render('Courses/Edit', [
+            'course' => new CourseResource($course),
+            'sections' => SectionResource::collection($sections),
+            'degrees' => DegreeResource::collection($degrees),
+        ]);
     }
 
     /**
@@ -91,9 +99,14 @@ class CoursesController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Course $course)
+    public function update(UpdateCourseRequest $request, Course $course)
     {
-        //
+        Section::findOrFail($request->section_id);
+        Degree::findOrFail($request->degree_id);
+
+        $course->update($request->all());
+
+        return redirect(route('courses.index'));
     }
 
     /**

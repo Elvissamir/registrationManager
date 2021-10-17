@@ -37,6 +37,15 @@ Route::get('courses/create', [CoursesController::class, 'create'])
 Route::get('courses/{course}', [CoursesController::class, 'show'])
     ->middleware('auth:sanctum')
     ->name('courses.show');
+    
+Route::get('courses/{course}/edit', [CoursesController::class, 'edit'])
+    ->middleware('auth:sanctum')
+    ->name('courses.edit');
+
+Route::put('courses/{course}', [CoursesController::class, 'update'])
+    ->middleware('auth:sanctum')
+    ->name('courses.update');
+
 
 
 // STUDENTS
