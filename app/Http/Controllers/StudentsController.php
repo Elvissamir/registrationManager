@@ -33,13 +33,7 @@ class StudentsController extends Controller
 
     public function store(StoreStudentRequest $request) {
 
-        Student::create([
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'age' => $request->age,
-            'phone_mobile' => $request->phone_mobile,
-            'phone_house' => $request->phone_house,
-        ]);
+        Student::create($request->all());
 
         return redirect(route('students.index'));
     }

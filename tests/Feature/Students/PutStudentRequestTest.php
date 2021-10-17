@@ -120,55 +120,58 @@ class PutStudentRequestTest extends TestCase
              'first_name' => $student->first_name,
          ]);
  
+         $response->assertSessionHasErrors('first_name');
          $response->assertRedirect();
      }
 
      public function test_the_student_first_name_must_have_more_than_two_letters()
      {
-         // $this->withoutExceptionHandling();
+        // $this->withoutExceptionHandling();
  
-         $student = Student::factory()->create();
+        $student = Student::factory()->create();
  
-         $newData = [
+        $newData = [
              'first_name' => 'A',
              'last_name' => 'NewLName',
              'age' => 10,
              'phone_mobile' => '0424-249-23-54',
              'phone_house' => '0424-565-78-32',
-         ];
+        ];
  
-         $response = $this->actingAs($this->user())->put(route('students.update', $student->id), $newData);
+        $response = $this->actingAs($this->user())->put(route('students.update', $student->id), $newData);
  
-         $this->assertDatabaseHas('students', [
+        $this->assertDatabaseHas('students', [
              'id' => $student->id,
              'first_name' => $student->first_name,
          ]);
  
-         $response->assertRedirect();
+        $response->assertSessionHasErrors('first_name');
+        $response->assertRedirect();
      }
 
      public function test_the_student_first_name_must_have_less_than_fifteen_letters()
      {
-         // $this->withoutExceptionHandling();
+        // $this->withoutExceptionHandling();
  
-         $student = Student::factory()->create();
+        $student = Student::factory()->create();
  
-         $newData = [
-             'first_name' => 'ABCDEFGHIJKLMNOPQRS',
-             'last_name' => 'NewLName',
-             'age' => 10,
-             'phone_mobile' => '0424-249-23-54',
-             'phone_house' => '0424-565-78-32',
-         ];
+        $newData = [
+            'first_name' => 'ABCDEFGHIJKLMNOPQRS',
+            'last_name' => 'NewLName',
+            'age' => 10,
+            'phone_mobile' => '0424-249-23-54',
+            'phone_house' => '0424-565-78-32',
+        ];
  
-         $response = $this->actingAs($this->user())->put(route('students.update', $student->id), $newData);
+        $response = $this->actingAs($this->user())->put(route('students.update', $student->id), $newData);
  
-         $this->assertDatabaseHas('students', [
-             'id' => $student->id,
-             'first_name' => $student->first_name,
-         ]);
+        $this->assertDatabaseHas('students', [
+            'id' => $student->id,
+            'first_name' => $student->first_name,
+        ]);
  
-         $response->assertRedirect();
+        $response->assertSessionHasErrors('first_name');
+        $response->assertRedirect();
      }
 
      public function  test_the_first_name_must_have_only_letters() 
@@ -192,6 +195,7 @@ class PutStudentRequestTest extends TestCase
             'first_name' => $student->first_name,
         ]);
 
+        $response->assertSessionHasErrors('first_name');
         $response->assertRedirect();
      }
 
@@ -217,6 +221,7 @@ class PutStudentRequestTest extends TestCase
              'last_name' => $student->last_name,
          ]);
  
+         $response->assertSessionHasErrors('last_name');
          $response->assertRedirect();
      }
 
@@ -241,6 +246,7 @@ class PutStudentRequestTest extends TestCase
              'last_name' => $student->last_name,
          ]);
  
+         $response->assertSessionHasErrors('last_name');
          $response->assertRedirect();
      }
 
@@ -265,6 +271,7 @@ class PutStudentRequestTest extends TestCase
              'last_name' => $student->last_name,
          ]);
  
+         $response->assertSessionHasErrors('last_name');
          $response->assertRedirect();
      }
 
@@ -289,6 +296,7 @@ class PutStudentRequestTest extends TestCase
             'last_name' => $student->last_name,
         ]);
 
+        $response->assertSessionHasErrors('last_name');
         $response->assertRedirect();
      }
 
@@ -315,6 +323,7 @@ class PutStudentRequestTest extends TestCase
             'age' => $student->age,
         ]);
 
+        $response->assertSessionHasErrors('age');
         $response->assertRedirect();
      }
 
@@ -341,6 +350,7 @@ class PutStudentRequestTest extends TestCase
             'phone_mobile' => $student->phone_mobile,
         ]);
 
+        $response->assertSessionHasErrors('phone_mobile');
         $response->assertRedirect();
      }
 
@@ -365,6 +375,7 @@ class PutStudentRequestTest extends TestCase
             'phone_house' => $student->phone_house,
         ]);
 
+        $response->assertSessionHasErrors('phone_house');
         $response->assertRedirect();
      }
 

@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CourseResource extends JsonResource
+class SectionResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,12 +16,7 @@ class CourseResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'section_id' => SectionResource::collection($this->whenLoaded('section')),
-            'degree_id' => DegreeResource::collection($this->whenLoaded('degree')),
-            'period' => $this->period,
-            'status' => $this->status,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'name' => $this->name,
         ];
     }
 }

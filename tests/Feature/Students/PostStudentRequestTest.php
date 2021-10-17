@@ -80,6 +80,8 @@ class PostStudentRequestTest extends TestCase
                          ->post(route('students.store'), $studentData);
 
         $this->assertDatabaseCount('students', 0);
+
+        $response->assertSessionHasErrors('first_name');
         $response->assertRedirect();
     }
 
@@ -95,6 +97,8 @@ class PostStudentRequestTest extends TestCase
                          ->post(route('students.store'), $studentData);
 
         $this->assertDatabaseCount('students', 0);
+
+        $response->assertSessionHasErrors('first_name');
         $response->assertRedirect();
     }
 
@@ -110,6 +114,8 @@ class PostStudentRequestTest extends TestCase
                          ->post(route('students.store'), $studentData);
 
         $this->assertDatabaseCount('students', 0);
+
+        $response->assertSessionHasErrors('first_name');
         $response->assertRedirect();
     }
 
@@ -125,6 +131,8 @@ class PostStudentRequestTest extends TestCase
                          ->post(route('students.store'), $studentData);
 
         $this->assertDatabaseCount('students', 0);
+
+        $response->assertSessionHasErrors('first_name');
         $response->assertRedirect();   
     }
 
@@ -144,6 +152,8 @@ class PostStudentRequestTest extends TestCase
                          ->post(route('students.store'), $studentData);
 
         $this->assertDatabaseCount('students', 0);
+
+        $response->assertSessionHasErrors('last_name');
         $response->assertRedirect();
     }
 
@@ -159,6 +169,8 @@ class PostStudentRequestTest extends TestCase
                          ->post(route('students.store'), $studentData);
 
         $this->assertDatabaseCount('students', 0);
+
+        $response->assertSessionHasErrors('last_name');
         $response->assertRedirect();
     }
 
@@ -174,6 +186,8 @@ class PostStudentRequestTest extends TestCase
                          ->post(route('students.store'), $studentData);
 
         $this->assertDatabaseCount('students', 0);
+
+        $response->assertSessionHasErrors('last_name');
         $response->assertRedirect();
     }
 
@@ -189,6 +203,8 @@ class PostStudentRequestTest extends TestCase
                          ->post(route('students.store'), $studentData);
 
         $this->assertDatabaseCount('students', 0);
+
+        $response->assertSessionHasErrors('last_name');
         $response->assertRedirect();   
     }
 
@@ -206,6 +222,8 @@ class PostStudentRequestTest extends TestCase
                          ->post(route('students.store'), $studentData);
 
         $this->assertDatabaseCount('students', 0);
+
+        $response->assertSessionHasErrors('age');
         $response->assertRedirect(); 
     }
 
@@ -223,6 +241,8 @@ class PostStudentRequestTest extends TestCase
                           ->post(route('students.store'), $studentData);
  
         $this->assertDatabaseCount('students', 0);
+
+        $response->assertSessionHasErrors('phone_mobile');
         $response->assertRedirect(); 
     }
     
@@ -238,6 +258,8 @@ class PostStudentRequestTest extends TestCase
                           ->post(route('students.store'), $studentData);
  
         $this->assertDatabaseCount('students', 0);
+
+        $response->assertSessionHasErrors('phone_house');
         $response->assertRedirect(); 
     }
 

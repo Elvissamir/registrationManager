@@ -26,7 +26,7 @@ class CreateCoursesTable extends Migration
             ->on('degrees');
 
             $table->string('period', 20);
-            $table->enum('status', ['active', 'finished']);
+            $table->enum('status', ['active', 'finished'])->default('active');
 
             $table->timestamps();
         });

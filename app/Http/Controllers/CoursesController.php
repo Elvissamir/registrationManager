@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 use App\Models\Course;
+use App\Models\Degree;
+use App\Models\Section;
 use Illuminate\Http\Request;
 use App\Http\Resources\CourseResource;
+use App\Http\Resources\DegreeResource;
+use App\Http\Resources\SectionResource;
+use App\Http\Requests\StoreCourseRequest;
 
 class CoursesController extends Controller
 {
@@ -30,7 +35,13 @@ class CoursesController extends Controller
      */
     public function create()
     {
-        //
+        $degrees = Degree::all();
+        $sections = Section::all();
+
+        return Inertia::render('Courses/Create', [
+            'sections' => SectionResource::collection($sections),
+            'degrees' => DegreeResource::collection($degrees),
+        ]);
     }
 
     /**
@@ -39,9 +50,14 @@ class CoursesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCourseRequest $request)
     {
-        //
+        Section::findOrFail($request->section_id);
+        Degree::findOrFail($request->degree_id);
+
+        Course::create($request->all());
+
+        return redirect(route('courses.index'));
     }
 
     /**
