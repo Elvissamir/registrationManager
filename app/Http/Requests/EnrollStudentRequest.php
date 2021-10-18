@@ -14,7 +14,7 @@ class EnrollStudentRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'student_id' => 'required',
         ];
     }
 }

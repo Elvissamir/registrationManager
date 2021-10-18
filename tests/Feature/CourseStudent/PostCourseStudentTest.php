@@ -83,4 +83,27 @@ class PostCourseStudentTest extends TestCase
         $this->assertEquals($course->students()->count(), 0);
         $response->assertRedirect(route('login'));
     }
+
+    public function test_the_student_id_is_required()
+    {
+        // $this->withoutExceptionHandling();
+
+        $studentA = Student::factory()->create();
+        $studentB = Student::factory()->create();
+
+        $course = Course::factory()->create();
+
+        $enrollData = [
+            'student_id' => '',
+        ];
+
+        $this->assertEquals($course->students()->count(), 0);
+
+        $response = $this->actingAs($this->user())->post(route('courseStudents.store', $course->id), $enrollData);
+
+        $this->assertEquals($course->students()->count(), 0);
+
+        $response->assertRedirect();
+    }
+
 }
