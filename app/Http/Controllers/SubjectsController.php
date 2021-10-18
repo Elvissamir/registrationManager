@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Inertia\Inertia;
+use App\Models\Course;
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use App\Http\Resources\CourseResource;
 use App\Http\Resources\SubjectResource;
+use App\Http\Requests\StoreSubjectRequest;
 
 class SubjectsController extends Controller
 {
@@ -30,7 +33,11 @@ class SubjectsController extends Controller
      */
     public function create()
     {
-        //
+        $courses = Course::all();
+
+        return Inertia::render('Subjects/Create', [
+            'courses' => CourseResource::collection($courses),
+        ]);
     }
 
     /**
@@ -39,9 +46,11 @@ class SubjectsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSubjectRequest $request)
     {
-        //
+        Subject::create($request->all());
+
+        return redirect(route('subjects.index'));
     }
 
     /**
