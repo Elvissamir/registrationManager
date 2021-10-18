@@ -10,7 +10,7 @@ use App\Http\Resources\StudentResource;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class GetStudentRequestTest extends TestCase
+class GetStudentTest extends TestCase
 {
     use RefreshDatabase;
 

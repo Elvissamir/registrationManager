@@ -9,7 +9,7 @@ use App\Http\Resources\TeacherResource;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class  GetTeacherRequestTest extends TestCase
+class  GetTeacherTest extends TestCase
 {
     use RefreshDatabase;
 

@@ -7,7 +7,7 @@ use App\Models\Student;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class DeleteStudentRequestTest extends TestCase
+class DeleteStudentTest extends TestCase
 {
     use RefreshDatabase;
 

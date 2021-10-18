@@ -9,7 +9,7 @@ use Inertia\Testing\Assert;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class PostStudentRequestTest extends TestCase
+class PostStudentTest extends TestCase
 {
     use RefreshDatabase;
 

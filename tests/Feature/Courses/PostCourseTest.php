@@ -12,7 +12,7 @@ use App\Http\Resources\SectionResource;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class PostCourseRequestTest extends TestCase
+class PostCourseTest extends TestCase
 {
     use RefreshDatabase;
 

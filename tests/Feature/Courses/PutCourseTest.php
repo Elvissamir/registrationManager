@@ -14,7 +14,7 @@ use App\Http\Resources\SectionResource;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class PutCourseRequestTest extends TestCase
+class PutCourseTest extends TestCase
 {
     use RefreshDatabase;
 
