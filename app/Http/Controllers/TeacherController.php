@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 use App\Http\Resources\TeacherResource;
+use App\Http\Requests\StoreTeacherRequest;
 
 class TeacherController extends Controller
 {
@@ -30,7 +31,7 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Teachers/Create', []);
     }
 
     /**
@@ -39,9 +40,11 @@ class TeacherController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTeacherRequest $request)
     {
-        //
+        Teacher::create($request->all());
+
+        return redirect(route('teachers.index'));
     }
 
     /**

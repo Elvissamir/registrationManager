@@ -22,7 +22,12 @@ class TeacherFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'first_name' => $this->faker->firstName(),
+            'last_name' => $this->faker->lastName(),
+            'ci' => '45567890',
+            'age' => rand(25, 70),
+            'phone_mobile' => '0424-999-99-99',
+            'phone_house' => '0212-999-99-99',
         ];
     }
 }
