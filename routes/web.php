@@ -7,6 +7,7 @@ use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\SubjectsController;
+use App\Http\Controllers\CourseStudentsController;
 
 //
 Route::get('/', function () {
@@ -28,6 +29,18 @@ Route::resource('subjects', SubjectsController::class)->middleware('auth:sanctum
 
 // COURSES
 Route::resource('courses', CoursesController::class)->middleware('auth:sanctum');
+
+Route::get('courses/{course}/students', [CourseStudentsController::class, 'show'])
+     ->name('courseStudents.show')
+     ->middleware('auth:sanctum');
+
+Route::post('courses/{course}/students', [CourseStudentsController::class, 'store'])
+     ->name('courseStudents.store')
+     ->middleware('auth:sanctum');
+
+Route::get('courses/{course}/students/create', [CourseStudentsController::class, 'create'])
+     ->name('courseStudents.create')
+     ->middleware('auth:sanctum');
 
 // TEACHERS
 Route::resource('teachers', TeacherController::class)->middleware('auth:sanctum');
