@@ -8,6 +8,7 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\CourseStudentsController;
+use App\Http\Controllers\SubjectTeachersController;
 
 //
 Route::get('/', function () {
@@ -27,9 +28,15 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 // SUBJECTS
 Route::resource('subjects', SubjectsController::class)->middleware('auth:sanctum');
 
+// SUBJECTS TEACHERS
+Route::get('subjects/{subject}/teachers', [SubjectTeachersController::class, 'show'])
+     ->name('subjectTeachers.show')
+     ->middleware('auth:sanctum');
+
 // COURSES
 Route::resource('courses', CoursesController::class)->middleware('auth:sanctum');
 
+// COURSES STUDENTS
 Route::get('courses/{course}/students', [CourseStudentsController::class, 'show'])
      ->name('courseStudents.show')
      ->middleware('auth:sanctum');

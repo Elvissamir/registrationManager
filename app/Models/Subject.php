@@ -11,4 +11,10 @@ class Subject extends Model
 
     // Properties
     protected $fillable = ['title', 'credits'];
+
+    // Relationships
+    public function teachers()
+    {
+        return $this->belongsToMany(Teacher::class);
+    }
 }
