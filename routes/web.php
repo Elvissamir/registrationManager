@@ -33,6 +33,10 @@ Route::get('subjects/{subject}/teachers', [SubjectTeachersController::class, 'sh
      ->name('subjectTeachers.show')
      ->middleware('auth:sanctum');
 
+Route::get('subjects/{subject}/teachers/create', [SubjectTeachersController::class, 'create'])
+     ->name('subjectTeachers.create')
+     ->middleware('auth:sanctum');
+
 // COURSES
 Route::resource('courses', CoursesController::class)->middleware('auth:sanctum');
 
