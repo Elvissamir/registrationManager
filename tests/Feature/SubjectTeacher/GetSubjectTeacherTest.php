@@ -66,7 +66,7 @@ class GetSubjectTeacherTest extends TestCase
                       ->where('teachers', TeacherResource::collection($teachers)));
     }
 
-    public function test_guests_can_not_create_subject_page()
+    public function test_guests_can_not_access_the_create_subject_page()
     {
         // $this->withoutExceptionHandling();
 

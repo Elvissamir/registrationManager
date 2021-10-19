@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EnrollStudentRequest extends FormRequest
+class StoreSubjectTeacherRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -14,7 +14,7 @@ class EnrollStudentRequest extends FormRequest
     public function rules()
     {
         return [
-            'student_id' => 'required|exists:App\Models\Student,id',
+            'teacher_id' => 'required|exists:App\Models\Teacher,id',
         ];
     }
 }

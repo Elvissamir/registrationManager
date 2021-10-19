@@ -8,6 +8,7 @@ use App\Models\Teacher;
 use Illuminate\Http\Request;
 use App\Http\Resources\SubjectResource;
 use App\Http\Resources\TeacherResource;
+use App\Http\Requests\StoreSubjectTeacherRequest;
 
 class SubjectTeachersController extends Controller
 {
@@ -35,5 +36,12 @@ class SubjectTeachersController extends Controller
             'subject' => new SubjectResource($subject),
             'teachers' => TeacherResource::collection($teachers),
         ]);
+    }
+
+    public function store(StoreSubjectTeacherRequest $request, Subject $subject)
+    {
+        $subject->teachers()->attach($request->teacher_id);
+
+        return redirect(route('subjectTeachers.show', $subject->id));
     }
 }

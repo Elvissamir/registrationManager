@@ -103,7 +103,31 @@ class PostCourseStudentTest extends TestCase
 
         $this->assertEquals($course->students()->count(), 0);
 
+        $response->assertSessionHasErrors('student_id');
         $response->assertRedirect();
+    }
+
+    public function test_the_student_id_must_exist()
+    {
+       // $this->withoutExceptionHandling();
+
+       $studentA = Student::factory()->create();
+       $studentB = Student::factory()->create();
+
+       $course = Course::factory()->create();
+
+       $enrollData = [
+           'student_id' => rand(1000, 2000),
+       ];
+
+       $this->assertEquals($course->students()->count(), 0);
+
+       $response = $this->actingAs($this->user())->post(route('courseStudents.store', $course->id), $enrollData);
+
+       $this->assertEquals($course->students()->count(), 0);
+
+       $response->assertSessionHasErrors('student_id');
+       $response->assertRedirect();
     }
 
 }
