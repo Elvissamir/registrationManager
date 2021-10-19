@@ -8,6 +8,7 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\CourseStudentsController;
+use App\Http\Controllers\CourseSubjectsController;
 use App\Http\Controllers\SubjectTeachersController;
 
 //
@@ -43,6 +44,15 @@ Route::get('subjects/{subject}/teachers/create', [SubjectTeachersController::cla
 
 // COURSES
 Route::resource('courses', CoursesController::class)->middleware('auth:sanctum');
+
+// COURSES SUBJECTS
+Route::get('courses/{course}/subjects', [CourseSubjectsController::class, 'show'])
+     ->name('courseSubjects.show')
+     ->middleware('auth:sanctum');
+    
+Route::get('courses/{course}/subjects/create', [CourseSubjectsController::class, 'create'])
+     ->name('courseSubjects.create')
+     ->middleware('auth:sanctum');
 
 // COURSES STUDENTS
 Route::get('courses/{course}/students', [CourseStudentsController::class, 'show'])

@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\Degree;
 use App\Models\Section;
 use App\Models\Student;
+use App\Models\Subject;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -57,4 +58,23 @@ class CourseModelTest extends TestCase
         $this->assertEquals($course->students[1]->id, $studentB->id);
         $this->assertEquals($course->students[1]->first_name, $studentB->first_name);
     }
+
+    public function test_a_course_has_many_subjects()
+    {
+        $subjectA = Subject::factory()->create();
+        $subjectB = Subject::factory()->create();
+
+        $course = Course::factory()->create();
+
+        $course->subjects()->attach($subjectA->id);
+        $course->subjects()->attach($subjectB->id);
+
+        $this->assertEquals($course->subjects()->count(), 2);
+        $this->assertEquals($course->subjects[0]->id, $subjectA->id);
+        $this->assertEquals($course->subjects[0]->title, $subjectA->title);
+
+        $this->assertEquals($course->subjects[1]->id, $subjectB->id);
+        $this->assertEquals($course->subjects[1]->title, $subjectB->title);
+    }
+
 }
