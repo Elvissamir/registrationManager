@@ -54,6 +54,10 @@ Route::get('courses/{course}/subjects/create', [CourseSubjectsController::class,
      ->name('courseSubjects.create')
      ->middleware('auth:sanctum');
 
+Route::post('courses/{course}/subjects', [CourseSubjectsController::class, 'store'])
+     ->name('courseSubjects.store')
+     ->middleware('auth:sanctum');
+
 // COURSES STUDENTS
 Route::get('courses/{course}/students', [CourseStudentsController::class, 'show'])
      ->name('courseStudents.show')
