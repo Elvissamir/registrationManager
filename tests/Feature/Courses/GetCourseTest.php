@@ -23,7 +23,7 @@ class GetCourseTest extends TestCase
 
         $response->assertInertia(fn(Assert $page) => 
             $page->component('Courses/Index')
-                 ->where('courses', CourseResource::collection($courses)));
+                 ->has('courses'));
    }
 
    public function test_guests_can_not_access_the_index_page() 

@@ -22,7 +22,7 @@ class CoursesController extends Controller
      */
     public function index()
     {
-        $courses = Course::all();
+        $courses = Course::with(['section', 'degree'])->get();
 
         return Inertia::render('Courses/Index', [
             'courses' => CourseResource::collection($courses),

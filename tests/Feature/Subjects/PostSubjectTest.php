@@ -4,6 +4,7 @@ namespace Tests\Feature\Subjects;
 
 use Tests\TestCase;
 use App\Models\Course;
+use Illuminate\Support\Str;
 use Inertia\Testing\Assert;
 use App\Http\Resources\CourseResource;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -82,12 +83,12 @@ class PostSubjectTest extends TestCase
         $response->assertRedirect();
     }
 
-    public function test_the_subject_title_must_have_less_than_fifteen_letters()
+    public function test_the_subject_title_must_have_less_than_twenty_six_letters()
     {
          // $this->withoutExceptionHandling();
 
          $subjectData = [
-            'title' => 'ABCDEFGHIJKLMNOPQRST',
+            'title' => Str::random(26),
             'credits' => 2
         ];
 

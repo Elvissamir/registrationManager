@@ -1111,9 +1111,16 @@ select {
 .col-span-6 {
 	grid-column: span 6 / span 6;
 }
+.m-auto {
+	margin: auto;
+}
 .mx-auto {
 	margin-left: auto;
 	margin-right: auto;
+}
+.my-8 {
+	margin-top: 2rem;
+	margin-bottom: 2rem;
 }
 .ml-3 {
 	margin-left: 0.75rem;
@@ -1187,6 +1194,12 @@ select {
 .-mt-px {
 	margin-top: -1px;
 }
+.mb-2 {
+	margin-bottom: 0.5rem;
+}
+.ml-auto {
+	margin-left: auto;
+}
 .block {
 	display: block;
 }
@@ -1195,6 +1208,9 @@ select {
 }
 .inline-flex {
 	display: inline-flex;
+}
+.table {
+	display: table;
 }
 .grid {
 	display: grid;
@@ -1274,6 +1290,15 @@ select {
 .w-20 {
 	width: 5rem;
 }
+.w-10\/12 {
+	width: 83.333333%;
+}
+.w-8\/12 {
+	width: 66.666667%;
+}
+.w-6\/12 {
+	width: 50%;
+}
 .min-w-0 {
 	min-width: 0px;
 }
@@ -1289,11 +1314,17 @@ select {
 .max-w-6xl {
 	max-width: 72rem;
 }
+.max-w-md {
+	max-width: 28rem;
+}
 .flex-1 {
 	flex: 1 1 0%;
 }
 .flex-shrink-0 {
 	flex-shrink: 0;
+}
+.border-collapse {
+	border-collapse: collapse;
 }
 .origin-top-left {
 	transform-origin: top left;
@@ -1337,11 +1368,19 @@ select {
 .list-disc {
 	list-style-type: disc;
 }
+.appearance-none {
+	-webkit-appearance: none;
+	   -moz-appearance: none;
+	        appearance: none;
+}
 .grid-cols-6 {
 	grid-template-columns: repeat(6, minmax(0, 1fr));
 }
 .grid-cols-1 {
 	grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+.flex-row {
+	flex-direction: row;
 }
 .flex-col {
 	flex-direction: column;
@@ -1351,6 +1390,9 @@ select {
 }
 .items-center {
 	align-items: center;
+}
+.items-baseline {
+	align-items: baseline;
 }
 .justify-end {
 	justify-content: flex-end;
@@ -1597,6 +1639,10 @@ select {
 	padding-top: 2.5rem;
 	padding-bottom: 2.5rem;
 }
+.px-8 {
+	padding-left: 2rem;
+	padding-right: 2rem;
+}
 .pt-6 {
 	padding-top: 1.5rem;
 }
@@ -1629,6 +1675,9 @@ select {
 }
 .pt-8 {
 	padding-top: 2rem;
+}
+.pb-8 {
+	padding-bottom: 2rem;
 }
 .text-left {
 	text-align: left;
@@ -1675,8 +1724,14 @@ select {
 .font-semibold {
 	font-weight: 600;
 }
+.font-bold {
+	font-weight: 700;
+}
 .uppercase {
 	text-transform: uppercase;
+}
+.italic {
+	font-style: italic;
 }
 .leading-5 {
 	line-height: 1.25rem;
@@ -1763,6 +1818,10 @@ select {
 .text-gray-300 {
 	--tw-text-opacity: 1;
 	color: rgba(209, 213, 219, var(--tw-text-opacity));
+}
+.text-blue-500 {
+	--tw-text-opacity: 1;
+	color: rgba(59, 130, 246, var(--tw-text-opacity));
 }
 .underline {
 	text-decoration: underline;
@@ -2244,6 +2303,10 @@ select {
 
 	.md\:grid {
 		display: grid;
+	}
+
+	.md\:w-10\/12 {
+		width: 83.333333%;
 	}
 
 	.md\:grid-cols-3 {

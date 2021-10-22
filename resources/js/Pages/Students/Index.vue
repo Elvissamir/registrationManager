@@ -1,25 +1,62 @@
 <template>
-    <div>
-        <layout>
-            <h1>Los estudiantes</h1>
-            <p>{{ students }}</p>
-            <div v-for="(student, index) in students" :key="index">
-                <div>
-                    <p>{{ student.id }}</p>
-                    <p>{{ student.first_name }}</p>
+  <div>
+        <Layout>
+            <div class="flex flex-col m-auto p-6 my-8 bg-white w-6/12">
+                <div class="flex flex-row">
+                    <h1 class="text-2xl">Alumnos Registrados:</h1>
+                    <Link class="ml-auto bg-gray-800 rounded-md font-bold text-white px-4" :href="route('students.create')" method="get" as="button" type="button">
+                        Registrar Alumno
+                    </Link>
                 </div>
+
+                <div v-if="hasStudents">
+                    <table class="border-collapse border border-gray-300 mt-4 text-lg w-full">
+                        <thead>
+                            <tr class="text-center">
+                                <th class="border border-gray-300 px-2">Id</th>
+                                <th class="border border-gray-300 px-2">Nombre Completo</th>
+                                <th class="border border-gray-300 px-2">Edad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="text-center" v-for="(student, index) in students" :key="index">
+                                <td class="border border-gray-300 px-2">{{ student.id }}</td>
+                                <td class="border border-gray-300 px-2">
+                                    <a class="text-blue-500 underline" :href="route('students.show', student.id)">
+                                        {{ student.first_name }} {{ student.last_name }}
+                                    </a>
+                                </td>
+                                <td class="border border-gray-300 px-2">
+                                    {{ student.age }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div v-else>
+                    <p class="mt-3 text-lg"> No hay alumnos para mostrar por el momento.</p>
+
+                    <Link class="mt-2" :href="route('subjects.create')" method="get" as="button" type="button">
+                        Registrar Alumno
+                    </Link>
+                </div>
+
             </div>
-        </layout>
+        </Layout>
     </div>
 </template>
 
 <script>
 
 import Layout from '../../Layouts/AppLayout'
+import { Link } from '@inertiajs/inertia-vue3'
+import { ref } from 'vue'
 
 export default {
     components: {
         Layout,
+        Link,
     },
     props: {
         students: {
@@ -28,7 +65,15 @@ export default {
         }
     },
     setup(props) {
-        console.log(props.students);
+
+        const hasStudents = ref(true);
+
+        if (props.students.length == 0)
+            hasStudents.value = false;
+            
+        return {
+            hasStudents,
+        }
     },
 }
 </script>

@@ -7,20 +7,35 @@
         <div class="min-h-screen bg-gray-100">
             <nav class="bg-white border-b border-gray-100">
                 <!-- Primary Navigation Menu -->
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mx-auto md:w-10/12">
                     <div class="flex justify-between h-16">
                         <div class="flex">
                             <!-- Logo -->
                             <div class="flex-shrink-0 flex items-center">
                                 <Link :href="route('dashboard')">
-                                    <jet-application-mark class="block h-9 w-auto" />
+                                    <div class="font-bold">
+                                        <p class="italic">U.E.D Manuel Antonio Carreño</p>
+                                        <p class="text-sm">Sistema de Gestión y Registro</p>
+                                    </div>
                                 </Link>
                             </div>
 
                             <!-- Navigation Links -->
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
-                                    Dashboard
+                            <div class="hidden space-x-8 ml-2 sm:-my-px sm:ml-10 sm:flex">
+                                <jet-nav-link class="font-bold text-lg" :href="route('courses.index')" :active="route().current('courses.index')">
+                                    Cursos
+                                </jet-nav-link>
+
+                                <jet-nav-link class="font-bold text-lg" :href="route('students.index')" :active="route().current('students.index')">
+                                    Alumnos
+                                </jet-nav-link>
+
+                                <jet-nav-link class="font-bold text-lg" :href="route('subjects.index')" :active="route().current('subjects.index')">
+                                    Materias
+                                </jet-nav-link>
+
+                                 <jet-nav-link class="font-bold text-lg" :href="route('teachers.index')" :active="route().current('teachers.index')">
+                                    Profesores
                                 </jet-nav-link>
                             </div>
                         </div>
@@ -224,9 +239,55 @@
             </header>
 
             <!-- Page Content -->
-            <main>
+            <main class="flex items-center justify-center">
                 <slot></slot>
             </main>
+
+            <!-- FOOTER -->
+            <footer class="bg-gray-800 mt-8">
+                <div class="flex flex-col w-10/12 mx-auto py-8 text-white">
+
+                    <!-- INFO -->
+                    <div class="flex flex-col mt-3 mx-auto items-center text-center">
+                        <div class="flex flex-col justify-center">
+                            <p class="font-bold mt-2">
+                                Sistema de Registro y Gestión
+                            </p>
+                            <p class="font-bold">
+                                U.E.D Manuel Antonio Carreño
+                            </p>
+                        </div>
+                        
+                        <div class="flex flex-col justify-center mt-2">
+                            <div class="flex flex-wrap justify-center font-bold">
+                                <div class="flex flex-wrap items-baseline">
+                                    <p class="ml-1">Diseño</p>
+                                    <p class="ml-1">Y</p>
+                                    <p class="ml-1">Desarrollo</p>
+                                </div>
+                                <p class="ml-1">Por</p>
+                                <p class="ml-1">Elvis Carrasco</p>
+                            </div>
+
+                            <div class="flex flex-col justify-center mt-2">
+                                <p class="font-bold">Creado Bajo Servicio Comunitario</p>
+                                <p class="font-bold">De</p>
+                                <p class="font-bold mt-1">
+                                    Universidad Nacional Experimental Politécnica (UNEXPO)
+                                </p>
+                                <p class="font-bold">
+                                    Vicerrectorado Luis Caballero Mejías
+                                </p>
+                                <p class="font-bold">
+                                    Caracas - 2021
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
         </div>
     </div>
 </template>
