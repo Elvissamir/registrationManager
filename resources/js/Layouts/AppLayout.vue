@@ -12,8 +12,11 @@
                         <div class="flex">
                             <!-- Logo -->
                             <div class="flex-shrink-0 flex items-center">
-                                <Link :href="route('dashboard')">
-                                    <div class="font-bold">
+                                <Link class="flex flex-row" :href="route('courses.index')">
+                                    <div class="flex">
+                                        <img class="flex w-16 h-16 rounded-full" src="/images/theLogo.png" alt="">
+                                    </div>
+                                    <div class="font-bold flex flex-col justify-center ml-3">
                                         <p class="italic">U.E.D Manuel Antonio Carreño</p>
                                         <p class="text-sm">Sistema de Gestión y Registro</p>
                                     </div>
@@ -21,20 +24,20 @@
                             </div>
 
                             <!-- Navigation Links -->
-                            <div class="hidden space-x-8 ml-2 sm:-my-px sm:ml-10 sm:flex">
-                                <jet-nav-link class="font-bold text-lg" :href="route('courses.index')" :active="route().current('courses.index')">
+                            <div class="space-x-8 ml-12 flex items-center justify-center">
+                                <jet-nav-link class="font-bold text-base" :href="route('courses.index')" :active="route().current('courses.index')">
                                     Cursos
                                 </jet-nav-link>
 
-                                <jet-nav-link class="font-bold text-lg" :href="route('students.index')" :active="route().current('students.index')">
+                                <jet-nav-link class="font-bold text-base" :href="route('students.index')" :active="route().current('students.index')">
                                     Alumnos
                                 </jet-nav-link>
 
-                                <jet-nav-link class="font-bold text-lg" :href="route('subjects.index')" :active="route().current('subjects.index')">
+                                <jet-nav-link class="font-bold text-base" :href="route('subjects.index')" :active="route().current('subjects.index')">
                                     Materias
                                 </jet-nav-link>
 
-                                 <jet-nav-link class="font-bold text-lg" :href="route('teachers.index')" :active="route().current('teachers.index')">
+                                 <jet-nav-link class="font-bold text-base" :href="route('teachers.index')" :active="route().current('teachers.index')">
                                     Profesores
                                 </jet-nav-link>
                             </div>
@@ -266,7 +269,12 @@
                                     <p class="ml-1">Desarrollo</p>
                                 </div>
                                 <p class="ml-1">Por</p>
-                                <p class="ml-1">Elvis Carrasco</p>
+
+                                <div class="w-full flex flex-col items-center justify-center">
+                                    <p class="ml-1">Elvis Carrasco</p>
+                                    <p class="ml-1">Maxi Acosta</p>
+                                    <p class="ml-1">Fabiola Romero</p>
+                                </div>
                             </div>
 
                             <div class="flex flex-col justify-center mt-2">
