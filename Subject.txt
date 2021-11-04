@@ -1,0 +1,14 @@
+ GET: 
+ 	the subjects index page exists and has the list of subjects -R
+ 	the subject show page exists and has the subject data -R
+ 	
+ 
+ POST: 
+ 	the create subject page exists and has the list of courses -R
+ 	
+ 	a user can create a new subject -R
+ 	guests can not create a subject -R
+ 	
+ 	the subject title is required -R
+ 	the subject title must have less than fifteen letters -R
+ 	the credit field is required -R

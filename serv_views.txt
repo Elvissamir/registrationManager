@@ -1,0 +1,22 @@
+VIEWS: 
+	- Student: 
+		Index (delete btn, create btn), 
+		Show (delete btn, edit btn, list of subjects),
+		Edit
+		
+	- Teacher: 
+		Index (delete btn, create btn), 
+		Show (delete btn, edit btn, list of subjects),
+		Edit
+		
+	- Course:  
+		Index (delete btn, create btn), 
+		Create (section field, degree field, period, status, )
+		Show (list of students, add student btn, remove student btn),
+		Edit	
+		
+	- Subject: 
+		Index (delete btn, create btn),
+		Show (list of students)
+		Edit
+	

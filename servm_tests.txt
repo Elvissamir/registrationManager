@@ -1,0 +1,14 @@
+
+	
+	REQUESTS:
+	- Section: Get, Post, Delete
+	- Student: Get, Post, Edit, Delete
+	- Course:  Get, Post, Edit, Delete
+	- Subject: Get, Post, Edit, Delete
+	- Teacher: Get, Post, Edit, Delete
+	- Degree:  Get, Post, Edit, Delete 
+	
+	
+	
+	
+	

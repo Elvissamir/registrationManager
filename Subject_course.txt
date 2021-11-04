@@ -1,0 +1,16 @@
+
+	GET: 
+		- the show subject course show page has the course data and has a list of all the course subjects -R
+		
+		- guests can not access the subject course show page -R
+		
+		- the create subject course has the list of all subjects that haven't been added to the course -R
+		
+		- guests can not access the create subject course page -R
+		
+	POST: 
+	
+		- a user can add a subject to a course -R
+		- guests can not add a subject to a course -R
+		- the subject id is required -R
+		- the subject id must exist -R

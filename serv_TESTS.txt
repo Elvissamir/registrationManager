@@ -1,0 +1,15 @@
+MODELS: 
+	Section
+	- A section belongs to many courses
+	- A degree belongs to a course 
+	- A course has a section
+	- A course has a degree
+	- A course has many students
+	- A course has many subjects
+	- A subject belongs to many subjects
+	- A subject has many teachers
+	- A teacher belongs to many subjects
+	- A student belongs to a course
+	- A student has a score on a subject
+	
+

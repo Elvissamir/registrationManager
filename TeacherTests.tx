@@ -1,0 +1,55 @@
+GET
+	- the index view has a list of all teachers -R
+	- the show view has the teachers -R
+	- guests can not access the teachers index page -R 
+	- guests can not access the teachers show page -R
+	
+	- the show view has the teachers finished courses data
+	- the show view has the teachers current courses data	
+	
+	POST
+	- the create teacher page exists -R
+	- a user can register a teacher -R 
+	- only an authenticated user can register a teacher -R
+	- only an authenticated user can access the create teacher page -R
+	- the ci is required -R 
+	- the teachers first name is required -R
+	- the first name must have more than 2 letters -R
+	- the first name must have more than 15 letters -R
+	- the first name must have only letters -R
+	- the teacher last name is required -R
+	- the last name must have more than 2 letters -R
+	- the last name must have more than 15 letters -R
+	- the teacher age is required -R
+	- the teacher mobile phone number is required -R
+	- the teacher house phone number is required -R
+	
+	PUT
+	- the edit student page exists and has the teacher data
+	- only an authenticated user can access the edit page
+	- the user can edit a teacher
+	- only an authenticated user can edit a teacher
+	
+	- the CI is required
+	- the teachers first name is required
+	- the first name must have more than 2 letters
+	- the first name must have more than 15 letters
+	- the first name must have only letters
+	- the teachers last name is required
+	- the last name must have more than 2 letters
+	- the last name must have more than 15 letters
+	- the last name must have only letters
+	- the teachers age is required
+	- the teachers mobile phone number is required
+	- the teachers house phone number is required
+	
+	DELETE
+	- the user can delete a teacher
+	- only an authenticated user can delete a teacher
+	
+	- a teacher data can not be deleted if he has been rolled up in a course
+	- a teacher data can not be delete if he has finished a course
+	
+	
+	
+	

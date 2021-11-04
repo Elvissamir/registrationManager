@@ -1,0 +1,22 @@
+
+	GET:
+		- the subject_teachers_show_page_exists_and_has_the_subject_and_teachers_list of assigned teachers -R
+		
+		- guests can not access the subject teachers show page -R
+		
+		- the create subject teacher page exists and has the subject and list of teachers -R
+		
+		- guests can not access the create subject teacher page -R
+
+		
+	POST: 
+		
+		- a user can assing one teacher to a subject -R
+		
+		- guests can not assing teachers to a subject -R
+		
+		- the teacher id is required -R
+		
+		- the teacher id must exist -R
+		
+		

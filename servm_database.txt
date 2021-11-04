@@ -1,0 +1,22 @@
+
+	DATABASE: 
+		TABLES: 
+			- Section
+			- Student 
+			- Score
+			- Course 
+			- Degree
+			- Teacher
+			- Subject
+			- Course_subject
+			- Subject_Teacher
+			- Student_course
+			
+		SEEDERS: 
+			- Sections
+			- Degrees
+			- Subjects
+			- Teachers
+			
+			
+			

@@ -4,7 +4,7 @@
 
         <jet-banner />
 
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen bg-green-900">
             <nav class="bg-white border-b border-gray-100">
                 <!-- Primary Navigation Menu -->
                 <div class="mx-auto md:w-10/12">
@@ -272,8 +272,6 @@
 
                                 <div class="w-full flex flex-col items-center justify-center">
                                     <p class="ml-1">Elvis Carrasco</p>
-                                    <p class="ml-1">Maxi Acosta</p>
-                                    <p class="ml-1">Fabiola Romero</p>
                                 </div>
                             </div>
 

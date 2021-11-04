@@ -23220,7 +23220,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "min-h-screen bg-gray-100"
+  "class": "min-h-screen bg-green-900"
 };
 var _hoisted_2 = {
   "class": "bg-white border-b border-gray-100"
@@ -23496,7 +23496,7 @@ var _hoisted_68 = {
   "class": "flex items-center justify-center"
 };
 
-var _hoisted_69 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<footer class=\"bg-gray-800 mt-8\"><div class=\"flex flex-col w-10/12 mx-auto py-8 text-white\"><!-- INFO --><div class=\"flex flex-col mt-3 mx-auto items-center text-center\"><div class=\"flex flex-col justify-center\"><p class=\"font-bold mt-2\"> Sistema de Registro y Gestión </p><p class=\"font-bold\"> U.E.D Manuel Antonio Carreño </p></div><div class=\"flex flex-col justify-center mt-2\"><div class=\"flex flex-wrap justify-center font-bold\"><div class=\"flex flex-wrap items-baseline\"><p class=\"ml-1\">Diseño</p><p class=\"ml-1\">Y</p><p class=\"ml-1\">Desarrollo</p></div><p class=\"ml-1\">Por</p><div class=\"w-full flex flex-col items-center justify-center\"><p class=\"ml-1\">Elvis Carrasco</p><p class=\"ml-1\">Maxi Acosta</p><p class=\"ml-1\">Fabiola Romero</p></div></div><div class=\"flex flex-col justify-center mt-2\"><p class=\"font-bold\">Creado Bajo Servicio Comunitario</p><p class=\"font-bold\">De</p><p class=\"font-bold mt-1\"> Universidad Nacional Experimental Politécnica (UNEXPO) </p><p class=\"font-bold\"> Vicerrectorado Luis Caballero Mejías </p><p class=\"font-bold\"> Caracas - 2021 </p></div></div></div></div></footer>", 1);
+var _hoisted_69 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<footer class=\"bg-gray-800 mt-8\"><div class=\"flex flex-col w-10/12 mx-auto py-8 text-white\"><!-- INFO --><div class=\"flex flex-col mt-3 mx-auto items-center text-center\"><div class=\"flex flex-col justify-center\"><p class=\"font-bold mt-2\"> Sistema de Registro y Gestión </p><p class=\"font-bold\"> U.E.D Manuel Antonio Carreño </p></div><div class=\"flex flex-col justify-center mt-2\"><div class=\"flex flex-wrap justify-center font-bold\"><div class=\"flex flex-wrap items-baseline\"><p class=\"ml-1\">Diseño</p><p class=\"ml-1\">Y</p><p class=\"ml-1\">Desarrollo</p></div><p class=\"ml-1\">Por</p><div class=\"w-full flex flex-col items-center justify-center\"><p class=\"ml-1\">Elvis Carrasco</p></div></div><div class=\"flex flex-col justify-center mt-2\"><p class=\"font-bold\">Creado Bajo Servicio Comunitario</p><p class=\"font-bold\">De</p><p class=\"font-bold mt-1\"> Universidad Nacional Experimental Politécnica (UNEXPO) </p><p class=\"font-bold\"> Vicerrectorado Luis Caballero Mejías </p><p class=\"font-bold\"> Caracas - 2021 </p></div></div></div></div></footer>", 1);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Head = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Head");

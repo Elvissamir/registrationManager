@@ -1,0 +1,53 @@
+Student: 
+	GET
+	- the index view has a list of all students -R 
+	- the show view has the students data -R
+	- only an authenticated user can see the students index and show views -R
+	
+	- the show view has the students finished courses data
+	- the show view has the students current courses data	
+	
+	POST
+	- the create student page exists -R
+	- a user can register a student  -R
+	- only an authenticated user can register a student -R
+	- only an authenticated user can access the create student page -R
+	- the students first name is required -R
+	- the first name must have more than 2 letters -R
+	- the first name must have more than 15 letters -R
+	- the first name must have only letters -R
+	- the students last name is required -R
+	- the last name must have more than 2 letters -R
+	- the last name must have more than 15 letters -R
+	- the students age is required -R 
+	- the parents mobile phone number is required -R
+	- the parents house phone number is required -R
+	
+	PUT
+	- the edit student page exists and has the student data -R
+	- only an authenticated user can access the edit page -R
+	- the user can edit a students data	 -R
+	- only an authenticated user can edit a students data -R
+	
+	- the students first name is required -R
+	- the first name must have more than 2 letters -R
+	- the first name must have more than 15 letters -R
+	- the first name must have only letters -R
+	- the students last name is required -R
+	- the last name must have more than 2 letters -R
+	- the last name must have more than 15 letters -R
+	- the last name must have only letters -R
+	- the students age is required -R
+	- the parents mobile phone number is required -R
+	- the parents house phone number is required -R
+	
+	DELETE
+	- the user can delete a students data -R
+	- only an authenticated user can delete a students data -R
+	
+	- a students data can not be deleted if he has been rolled up in a course
+	- a students data can not be delete if he has finished a course
+	
+	
+	
+	

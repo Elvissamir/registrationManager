@@ -1,0 +1,19 @@
+
+	GET:
+		- the show page has the list of students enrolled on the course (show) -R
+		- guests can not see the list of students enrolled on the course -R
+		
+		- a course has many students -R
+	
+	POST: 
+		- the enroll form page exists and has the list of students not enrolled and course data -R
+		
+		- a user can enroll a student on a course -R
+		- guests can not enroll students on a course -R
+		- the student id is required -R
+		- the student id must exist
+		
+	DELETE:
+	
+		- the user can disenroll a student from a course
+		- guests can not disenroll a student from a course

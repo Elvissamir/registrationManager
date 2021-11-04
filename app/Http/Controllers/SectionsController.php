@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\section;
+use Inertia\Inertia;
+use App\Models\Section;
 use Illuminate\Http\Request;
+use App\Http\Resources\SectionResource;
 
 class SectionsController extends Controller
 {
@@ -14,7 +16,11 @@ class SectionsController extends Controller
      */
     public function index()
     {
-        //
+        $sections = Section::orderBy('name', 'asc')->get();
+
+        return Inertia::render('Sections/Index', [
+            'sections' => SectionResource::collection($sections),
+        ]);
     }
 
     /**
@@ -24,7 +30,7 @@ class SectionsController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Sections/Create', []);
     }
 
     /**
@@ -44,7 +50,7 @@ class SectionsController extends Controller
      * @param  \App\Models\section  $section
      * @return \Illuminate\Http\Response
      */
-    public function show(section $section)
+    public function show(Section $section)
     {
         //
     }
@@ -55,7 +61,7 @@ class SectionsController extends Controller
      * @param  \App\Models\section  $section
      * @return \Illuminate\Http\Response
      */
-    public function edit(section $section)
+    public function edit(Section $section)
     {
         //
     }
@@ -67,7 +73,7 @@ class SectionsController extends Controller
      * @param  \App\Models\section  $section
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, section $section)
+    public function update(Request $request, Section $section)
     {
         //
     }
@@ -78,7 +84,7 @@ class SectionsController extends Controller
      * @param  \App\Models\section  $section
      * @return \Illuminate\Http\Response
      */
-    public function destroy(section $section)
+    public function destroy(Section $section)
     {
         //
     }
