@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use App\Models\Section;
 use Illuminate\Http\Request;
 use App\Http\Resources\SectionResource;
+use App\Http\Requests\StoreSectionRequest;
 
 class SectionsController extends Controller
 {
@@ -39,9 +40,13 @@ class SectionsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSectionRequest $request)
     {
-        //
+        Section::create([
+            'name' => strtoupper($request->validated()['name']),
+        ]);
+
+        return redirect(route('sections.index'));
     }
 
     /**
