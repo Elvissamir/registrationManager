@@ -7,6 +7,7 @@ use App\Models\Section;
 use Illuminate\Http\Request;
 use App\Http\Resources\SectionResource;
 use App\Http\Requests\StoreSectionRequest;
+use App\Exceptions\CanNotDeleteAssignedSection;
 
 class SectionsController extends Controller
 {
@@ -90,7 +91,16 @@ class SectionsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Section $section)
-    {
-        //
+    {   
+        try {
+            $section->delete();
+        }
+        catch (CanNotDeleteAssignedSection $exception) {
+            return Inertia::render('Exceptions/Sections/Assigned', [
+                'exception' => $exception->getMessage(),
+            ]);
+        }
+
+        return redirect(route('sections.index'));
     }
 }
