@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use App\Models\Section;
 use Illuminate\Http\Request;
+use App\Http\Resources\CourseResource;
 use App\Http\Resources\SectionResource;
 use App\Http\Requests\StoreSectionRequest;
 use App\Exceptions\CanNotDeleteAssignedSection;
@@ -58,7 +59,12 @@ class SectionsController extends Controller
      */
     public function show(Section $section)
     {
-        //
+        $courses = $section->courses;
+
+        return Inertia::render('Sections/Show', [
+            'section' => new SectionResource($section),
+            'courses' => CourseResource::collection($courses),
+        ]);
     }
 
     /**
