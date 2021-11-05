@@ -25,10 +25,8 @@ class Section extends Model
         parent::boot();
 
         static::deleting(function ($section) {
-            if ($section->courses()-> count() > 0)
-            {
+            if ($section->courses()->count() > 0)
                 throw new CanNotDeleteAssignedSection('Can not delete the section of id ' . $section->id . ' , it has been assigned to some courses.');
-            }
         });
     }
 }

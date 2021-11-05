@@ -38,7 +38,7 @@ class PutDegreeTest extends TestCase
        $response->assertRedirect(route('login'));
     }
 
-    public function test_the_user_can_edit_a_degree()
+    public function test_the_user_can_update_a_degree()
     {
         $this->withoutExceptionHandling();
 
@@ -51,6 +51,21 @@ class PutDegreeTest extends TestCase
         $this->assertDatabaseHas('degrees', ['title' => 'newTitle', 'level' => 5]);
 
         $response->assertRedirect(route('degrees.index'));
+    }
+
+    public function test_guests_can_not_update_degrees()
+    {
+        // $this->withoutExceptionHandling();
+
+        $degree = Degree::factory()->create(['title' => 'oldTitle', 'level' => 1]);
+
+        $degreeData = ['title' => 'newTitle', 'level' => 5];
+
+        $response = $this->put(route('degrees.update', $degree->id), $degreeData);    
+        
+        $this->assertDatabaseHas('degrees', ['title' => 'oldTitle', 'level' => 1]);
+
+        $response->assertRedirect(route('login'));
     }
 
     public function test_the_degree_title_is_required()

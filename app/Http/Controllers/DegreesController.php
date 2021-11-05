@@ -9,6 +9,7 @@ use App\Http\Resources\CourseResource;
 use App\Http\Resources\DegreeResource;
 use App\Http\Requests\StoreDegreeRequest;
 use App\Http\Requests\UpdateDegreeRequest;
+use App\Exceptions\CanNotDeleteAssignedDegree;
 
 class DegreesController extends Controller
 {
@@ -100,6 +101,16 @@ class DegreesController extends Controller
      */
     public function destroy(Degree $degree)
     {
-        //
+        try {
+            $degree->delete();
+        }
+        catch (CanNotDeleteAssignedDegree $exception) 
+        {
+            return Inertia::render('Exceptions/Degrees/Assigned', [
+                'exception' => $exception->getMessage(),
+            ]);
+        }
+
+        return redirect(route('degrees.index'));
     }
 }
