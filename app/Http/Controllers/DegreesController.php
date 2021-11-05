@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\CourseResource;
 use App\Http\Resources\DegreeResource;
 use App\Http\Requests\StoreDegreeRequest;
+use App\Http\Requests\UpdateDegreeRequest;
 
 class DegreesController extends Controller
 {
@@ -72,7 +73,9 @@ class DegreesController extends Controller
      */
     public function edit(Degree $degree)
     {
-        //
+        return Inertia::render('Degrees/Edit', [
+            'degree' => new DegreeResource($degree),
+        ]);
     }
 
     /**
@@ -82,9 +85,11 @@ class DegreesController extends Controller
      * @param  \App\Models\Degree  $degree
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Degree $degree)
+    public function update(UpdateDegreeRequest $request, Degree $degree)
     {
-        //
+        $degree->update($request->validated());
+
+        return redirect(route('degrees.index'));
     }
 
     /**
