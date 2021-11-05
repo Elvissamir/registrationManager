@@ -7,6 +7,7 @@ use App\Models\Degree;
 use Illuminate\Http\Request;
 use App\Http\Resources\CourseResource;
 use App\Http\Resources\DegreeResource;
+use App\Http\Requests\StoreDegreeRequest;
 
 class DegreesController extends Controller
 {
@@ -31,7 +32,7 @@ class DegreesController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Degrees/Create', []);
     }
 
     /**
@@ -40,9 +41,11 @@ class DegreesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreDegreeRequest $request)
     {
-        //
+        Degree::create($request->validated());
+
+        return redirect(route('degrees.index'));
     }
 
     /**

@@ -15,7 +15,7 @@ class CreateDegreesTable extends Migration
     {
         Schema::create('degrees', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('title', 25);
             $table->unsignedInteger('level');
             $table->timestamps();
         });

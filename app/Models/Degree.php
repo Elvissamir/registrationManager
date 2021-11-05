@@ -9,6 +9,9 @@ class Degree extends Model
 {
     use HasFactory;
 
+    // Properties
+    protected $fillable = ['title', 'level'];
+
     // Relationships
     public function courses()
     {
