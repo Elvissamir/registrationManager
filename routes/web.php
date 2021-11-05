@@ -4,6 +4,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\CoursesController;
+use App\Http\Controllers\DegreesController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\SectionsController;
 use App\Http\Controllers\StudentsController;
@@ -31,6 +32,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::resource('sections', SectionsController::class)->middleware('auth:sanctum');
 
 // DEGREES
+Route::resource('degrees', DegreesController::class)->middleware('auth:sanctum');
 
 
 // SUBJECTS

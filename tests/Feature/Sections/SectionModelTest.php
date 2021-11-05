@@ -12,7 +12,7 @@ class SectionModelTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_a_course_has_many_students()
+    public function test_a_course_has_many_courses()
     {
         $section = Section::factory()->create();
 
