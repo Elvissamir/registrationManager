@@ -48,6 +48,7 @@
 
 <script>
 
+import { Inertia } from '@inertiajs/inertia'
 import Layout from '../../Layouts/AppLayout'
 import { Link } from '@inertiajs/inertia-vue3'
 import { ref } from 'vue'

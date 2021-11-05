@@ -40,6 +40,10 @@
                                  <jet-nav-link class="font-bold text-base" :href="route('teachers.index')" :active="route().current('teachers.index')">
                                     Profesores
                                 </jet-nav-link>
+
+                                 <jet-nav-link class="font-bold text-base" :href="route('sections.index')" :active="route().current('sections.index')">
+                                    Secciones
+                                </jet-nav-link>
                             </div>
                         </div>
 
@@ -242,7 +246,7 @@
             </header>
 
             <!-- Page Content -->
-            <main class="flex items-center justify-center">
+            <main class="">
                 <slot></slot>
             </main>
 
