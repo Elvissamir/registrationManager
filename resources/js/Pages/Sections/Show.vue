@@ -4,7 +4,7 @@
             <div class="flex flex-col m-auto p-6 my-8 bg-white w-6/12">
                 <div class="flex flex-row">
                     <h1 class="text-2xl font-black">Seccion: {{ section.name }}</h1>
-                    <DeleteBtn v-if="!(courses.length > 1)" :routeName="'students.edit'" :model="section" :rounded="false">
+                    <DeleteBtn v-if="!(courses.length > 0)" :routeName="'sections.destroy'" :model="section" :circle="false">
                         Eliminar
                     </DeleteBtn>
                 </div>

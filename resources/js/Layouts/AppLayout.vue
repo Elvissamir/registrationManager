@@ -25,21 +25,25 @@
 
                             <!-- Navigation Links -->
                             <div class="space-x-8 ml-12 flex items-center justify-center">
-                                <jet-nav-link class="font-bold text-base" :href="route('courses.index')" :active="route().current('courses.index')">
+                                 <jet-nav-link class="font-bold text-base" :href="route('courses.index')" :active="route().current('courses.index')">
                                     Cursos
-                                </jet-nav-link>
+                                 </jet-nav-link>
 
-                                <jet-nav-link class="font-bold text-base" :href="route('students.index')" :active="route().current('students.index')">
+                                 <jet-nav-link class="font-bold text-base" :href="route('students.index')" :active="route().current('students.index')">
                                     Alumnos
-                                </jet-nav-link>
+                                 </jet-nav-link>
 
-                                <jet-nav-link class="font-bold text-base" :href="route('subjects.index')" :active="route().current('subjects.index')">
+                                 <jet-nav-link class="font-bold text-base" :href="route('subjects.index')" :active="route().current('subjects.index')">
                                     Materias
-                                </jet-nav-link>
+                                 </jet-nav-link>
 
                                  <jet-nav-link class="font-bold text-base" :href="route('teachers.index')" :active="route().current('teachers.index')">
                                     Profesores
-                                </jet-nav-link>
+                                 </jet-nav-link>
+
+                                 <jet-nav-link class="font-bold text-base" :href="route('degrees.index')" :active="route().current('degrees.index')">
+                                    Grados
+                                 </jet-nav-link>
 
                                  <jet-nav-link class="font-bold text-base" :href="route('sections.index')" :active="route().current('sections.index')">
                                     Secciones
