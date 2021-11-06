@@ -11,9 +11,19 @@ use App\Http\Requests\UpdateStudentRequest;
 
 class StudentsController extends Controller
 {
-    public function index() {
+    public function index(Request $request) {
 
-        $students = Student::all();
+        if (array_key_exists('orderBy', $request->query()))
+        {
+            if ($request->query('orderBy') == 'name')
+                $students = Student::orderBy('first_name', 'asc')->orderBy('last_name', 'asc')->paginate(10);
+            else if ($request->query('orderBy') == 'registration')
+                $students = Student::orderBy('created_at', 'desc')->paginate(10);
+        }
+        else 
+        {
+            $students = Student::paginate(10);
+        }
 
         return Inertia::render('Students/Index', [
             'students' => StudentResource::collection($students),

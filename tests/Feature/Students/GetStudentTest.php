@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Students;
 
+use Carbon\Carbon;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Student;
@@ -18,11 +19,52 @@ class GetStudentTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $user = User::factory()->create();
+        Student::factory()->count(4)->create();
 
-        $students = Student::factory()->count(2)->create();
+        $response = $this->actingAs($this->user())->get(route('students.index'));
 
-        $response = $this->actingAs($user)->get(route('students.index'));
+        $students = Student::paginate(10);
+
+        $response->assertInertia(fn(Assert $page) => 
+            $page->component('Students/Index')
+                ->has('students')
+                ->where('students', StudentResource::collection($students))
+        );
+    }
+
+    public function test_the_user_can_see_the_list_of_students_ordered_by_name()
+    {
+        $this->withoutExceptionHandling();
+
+        $studentA = Student::factory()->create(['first_name' => 'Al', 'last_name' => 'Birhen']);
+        $studentB = Student::factory()->create(['first_name' => 'Abin', 'last_name' => 'Carglon']);
+        $studentC = Student::factory()->create(['first_name' => 'Aaron', 'last_name' => 'Daniels']);
+        $studentD = Student::factory()->create(['first_name' => 'Bobby', 'last_name' => 'Angels']);
+
+        $response = $this->actingAs($this->user())->get('/students?orderBy=name');
+
+        $students = Student::orderBy('first_name', 'asc')->orderBy('last_name', 'asc')->paginate(10);
+
+        // dd(StudentResource::collection($students));
+
+        $response->assertInertia(fn(Assert $page) => 
+            $page->component('Students/Index')
+                ->has('students')
+                ->where('students', StudentResource::collection($students)));
+    }
+
+    public function test_the_user_can_see_the_list_of_students_ordered_by_registration_date()
+    {
+        $this->withoutExceptionHandling();
+
+        $studentD = Student::factory()->create(['created_at' => Carbon::now()->subDays(4)]);
+        $studentC = Student::factory()->create(['created_at' => Carbon::now()->subDays(3)]);
+        $studentB = Student::factory()->create(['created_at' => Carbon::now()->subDays(2)]);
+        $studentA = Student::factory()->create(['created_at' => Carbon::now()->subDays(1)]);
+
+        $response = $this->actingAs($this->user())->get('/students?orderBy=registration');
+
+        $students = Student::orderBy('created_at', 'desc')->paginate(10);
 
         $response->assertInertia(fn(Assert $page) => 
             $page->component('Students/Index')
@@ -35,11 +77,9 @@ class GetStudentTest extends TestCase
        
         $this->withoutExceptionHandling();
 
-        $user = User::factory()->create();
-
         $student = Student::factory()->create();
 
-        $response = $this->actingAs($user)->get(route('students.show', $student->id));
+        $response = $this->actingAs($this->user())->get(route('students.show', $student->id));
 
         $response->assertInertia(fn(Assert $page) => 
             $page->component('Students/Show')
