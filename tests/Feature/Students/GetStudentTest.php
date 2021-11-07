@@ -5,8 +5,10 @@ namespace Tests\Feature\Students;
 use Carbon\Carbon;
 use Tests\TestCase;
 use App\Models\User;
+use App\Models\Course;
 use App\Models\Student;
 use Inertia\Testing\Assert;
+use App\Http\Resources\CourseResource;
 use App\Http\Resources\StudentResource;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -78,14 +80,23 @@ class GetStudentTest extends TestCase
         $this->withoutExceptionHandling();
 
         $student = Student::factory()->create();
+        $courseA = Course::factory()->create(['status' => 'active']);
+        $courseB = Course::factory()->create(['status' => 'finished']);
+
+        $student->courses()->attach($courseA->id);
+        $student->courses()->attach($courseB->id);
 
         $response = $this->actingAs($this->user())->get(route('students.show', $student->id));
+
+        $finishedCourses = $student->courses()->where('status', 'finished')->with(['degree', 'section'])->get();
+        $activeCourses = $student->courses()->where('status', 'active')->with(['degree', 'section'])->get();
 
         $response->assertInertia(fn(Assert $page) => 
             $page->component('Students/Show')
                 ->has('student')
                 ->where('student', new StudentResource($student))
-        );
+                ->where('finishedCourses', CourseResource::collection($finishedCourses))
+                ->where('activeCourses', CourseResource::collection($activeCourses)));
     }
 
     public function test_guests_can_not_see_the_students_index_page() {

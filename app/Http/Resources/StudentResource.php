@@ -16,6 +16,7 @@ class StudentResource extends JsonResource
     {
         return [
             'id'=> $this->id,
+            'courses' => CourseResource::collection($this->whenLoaded('courses')),
             'first_name' => $this->first_name,
             'last_name' => $this->last_name,
             'age' => $this->age,

@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use App\Http\Resources\CourseResource;
 use App\Http\Resources\StudentResource;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
+use App\Exceptions\CanNotDeleteEnrolledStudent;
+use App\Exceptions\CanNotDeleteStudentWithFinishedCourses;
 
 class StudentsController extends Controller
 {
@@ -31,9 +34,14 @@ class StudentsController extends Controller
     }
 
     public function show(Student $student) {
-        
+
+        $finishedCourses = $student->courses()->where('status', 'finished')->with(['section', 'degree'])->get();
+        $activeCourses = $student->courses()->where('status', 'active')->with(['section', 'degree'])->get();
+
         return Inertia::render('Students/Show', [
             'student' => new StudentResource($student),
+            'finishedCourses' => CourseResource::collection($finishedCourses),
+            'activeCourses' => CourseResource::collection($activeCourses),
         ]);
     }
 
@@ -43,7 +51,7 @@ class StudentsController extends Controller
 
     public function store(StoreStudentRequest $request) {
 
-        Student::create($request->all());
+        Student::create($request->validated());
 
         return redirect(route('students.index'));
     }
@@ -57,14 +65,27 @@ class StudentsController extends Controller
 
     public function update(UpdateStudentRequest $request, Student $student) {
         
-        $student->update($request->all());
+        $student->update($request->validated());
 
         return redirect(route('students.index'));
     }
 
     public function destroy(Student $student) {
 
-        $student->delete();
+        try {
+            $student->delete();
+        }
+        catch (CanNotDeleteEnrolledStudent $exception) {
+            return Inertia::render('Exceptions/Students/DeleteEnrolled', [
+                'exception' => $exception->getMessage(),
+            ]);       
+        }
+        catch (CanNotDeleteStudentWithFinishedCourses $exception)
+        {
+            return Inertia::render('Exceptions/Students/DeleteIfHasFinishedCourses', [
+                'exception' => $exception->getMessage(),
+            ]); 
+        }
 
         return redirect(route('students.index'));
     }

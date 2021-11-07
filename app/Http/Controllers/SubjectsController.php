@@ -48,7 +48,7 @@ class SubjectsController extends Controller
      */
     public function store(StoreSubjectRequest $request)
     {
-        Subject::create($request->all());
+        Subject::create($request->validated());
 
         return redirect(route('subjects.index'));
     }
