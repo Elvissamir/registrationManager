@@ -31,6 +31,7 @@ class GetStudentTest extends TestCase
             $page->component('Students/Index')
                 ->has('students')
                 ->where('students', StudentResource::collection($students))
+                ->where('order', 'id')
         );
     }
 
@@ -38,21 +39,24 @@ class GetStudentTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $studentA = Student::factory()->create(['first_name' => 'Al', 'last_name' => 'Birhen']);
         $studentB = Student::factory()->create(['first_name' => 'Abin', 'last_name' => 'Carglon']);
         $studentC = Student::factory()->create(['first_name' => 'Aaron', 'last_name' => 'Daniels']);
+        $studentA = Student::factory()->create(['first_name' => 'Al', 'last_name' => 'Birhen']);
         $studentD = Student::factory()->create(['first_name' => 'Bobby', 'last_name' => 'Angels']);
 
         $response = $this->actingAs($this->user())->get('/students?orderBy=name');
 
         $students = Student::orderBy('first_name', 'asc')->orderBy('last_name', 'asc')->paginate(10);
-
-        // dd(StudentResource::collection($students));
+        $students->appends(['orderBy' => 'name']);
 
         $response->assertInertia(fn(Assert $page) => 
             $page->component('Students/Index')
                 ->has('students')
-                ->where('students', StudentResource::collection($students)));
+                ->where('students', StudentResource::collection($students))
+                ->where('students.data.0.first_name', $studentC->first_name)
+                ->where('students.links.first', 'http://servm.test/students?orderBy=name&page=1')
+                ->where('order', 'name')
+            );
     }
 
     public function test_the_user_can_see_the_list_of_students_ordered_by_registration_date()
@@ -67,11 +71,15 @@ class GetStudentTest extends TestCase
         $response = $this->actingAs($this->user())->get('/students?orderBy=registration');
 
         $students = Student::orderBy('created_at', 'desc')->paginate(10);
+        $students->appends(['orderBy' => 'registration']);
 
         $response->assertInertia(fn(Assert $page) => 
             $page->component('Students/Index')
                 ->has('students')
                 ->where('students', StudentResource::collection($students))
+                ->where('students.data.0.first_name', $studentA->first_name)
+                ->where('students.links.first', 'http://servm.test/students?orderBy=registration&page=1')
+                ->where('order', 'registration')
         );
     }
 

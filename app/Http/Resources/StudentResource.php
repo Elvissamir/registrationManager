@@ -22,7 +22,7 @@ class StudentResource extends JsonResource
             'age' => $this->age,
             'phone_house' => $this->phone_house,
             'phone_mobile' => $this->phone_mobile,
-            'created_at' => $this->created_at,
+            'created_at' => $this->created_at->format('d-m-Y'),
         ];
     }
 }

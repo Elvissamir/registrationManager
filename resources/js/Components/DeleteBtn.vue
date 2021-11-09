@@ -29,7 +29,7 @@ export default {
         }
     },
     setup(props) {
-        console.log(props.model.id);
+        
     },
 }
 </script>
