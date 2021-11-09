@@ -12,16 +12,6 @@ use App\Http\Requests\StoreCourseSubjectRequest;
 
 class CourseSubjectsController extends Controller
 {
-    public function show(Course $course)
-    {
-        $subjects = $course->subjects;
-
-        return Inertia::render('CourseSubjects/Show', [
-            'course' => new CourseResource($course),
-            'subjects' => SubjectResource::collection($subjects),
-        ]);
-    }
-
     public function create(Course $course)
     {
         $subjects = Subject::notAddedToCourse($course->id);

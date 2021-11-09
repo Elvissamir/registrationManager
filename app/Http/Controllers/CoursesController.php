@@ -12,6 +12,7 @@ use App\Http\Resources\DegreeResource;
 use App\Http\Resources\SectionResource;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
+use App\Exceptions\CanNotDeleteIfHasEnrolledStudents;
 
 class CoursesController extends Controller
 {
@@ -22,7 +23,7 @@ class CoursesController extends Controller
      */
     public function index()
     {
-        $courses = Course::with(['section', 'degree'])->get();
+        $courses = Course::with(['section', 'degree'])->orderBy('created_at', 'desc')->paginate(10);
 
         return Inertia::render('Courses/Index', [
             'courses' => CourseResource::collection($courses),
@@ -69,6 +70,8 @@ class CoursesController extends Controller
      */
     public function show(Course $course)
     {
+        $course->load(['degree', 'section', 'subjects' => function ($q) { $q->orderBy('title', 'asc'); }]);
+
         return Inertia::render('Courses/Show', [
             'course' => new CourseResource($course),
         ]);
@@ -117,7 +120,15 @@ class CoursesController extends Controller
      */
     public function destroy(Course $course)
     {
-        $course->delete();
+        try {
+            $course->delete();
+        }
+        catch (CanNotDeleteIfHasEnrolledStudents $exception)
+        {
+            return Inertia::render('Exceptions/Courses/DeleteIfEnrolledStudents', [
+                'exception' => $exception->getMessage(),
+            ]);
+        }
 
         return redirect(route('courses.index'));
     }

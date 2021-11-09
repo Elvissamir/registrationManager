@@ -18,10 +18,11 @@ class CourseResource extends JsonResource
             'id' => $this->id,
             'section' => new SectionResource($this->whenLoaded('section')),
             'degree' => new DegreeResource($this->whenLoaded('degree')),
+            'subjects' => SubjectResource::collection($this->whenLoaded('subjects')),
             'period' => $this->period,
             'status' => $this->status,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'created_at' => $this->created_at->format('d-m-Y'),
+            'updated_at' => $this->updated_at->format('d-m-Y'),
         ];
     }
 }
