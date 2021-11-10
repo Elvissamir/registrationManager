@@ -3,22 +3,24 @@
         <Layout>
             <div class="flex flex-col m-auto p-6 my-8 bg-white w-8/12">
                 <div class="flex flex-row">
-                    <h1 class="text-2xl">Curso</h1>
-                    <Link class="ml-auto bg-gray-800 rounded-md font-bold text-white px-4" :href="route('courseStudents.create', course.id)" method="get" as="button" type="button">
-                        Agregar Alumno
-                    </Link>
+                    <h1 class="text-2xl">Curso {{ course.degree.title }} {{ course.degree.level }} {{ course.section.name }}</h1>
+                    <ShowBtn :routeName="'courseStudents.create'" :model="course">+ Alumno</ShowBtn>
                 </div>
 
                 <div class="mt-4">
-                    <p>Id curso: {{ course.id }}</p>
-                    <p>Periodo: {{ course.period }}</p>
+                     <p class="text-xl font-bold">Datos del Curso</p>
+                    <p class="text-lg mt-2">Nombre: {{ course.degree.title }} {{ course.section.name }} </p>
+                    <p class="text-lg">Grado: {{ course.degree.title }} {{ course.degree.level }}</p>
+                    <p class="text-lg">Seccion: {{ course.section.name }}</p>
+                    <p class="text-lg">Periodo: {{ course.period }}</p>
                     <div class="flex">
-                        <p>Estado: </p>
+                        <p class="text-lg">Estado: </p>
                         <div v-if="course.status == 'active'">
-                            Activo
+                            <p class="text-lg">Activo</p>
                         </div>
+
                         <div v-else>
-                            Finalizado
+                            <p class="text-lg">Finalizado</p>
                         </div>
                     </div>
                 </div>
@@ -27,16 +29,15 @@
                     <table class="border-collapse border border-gray-300 mt-4 text-lg w-full">
                         <thead>
                             <tr class="text-center">
-                                <th class="border border-gray-300 px-2">Id</th>
-                                <th class="border border-gray-300 px-2">Nombre completo</th>
+                                <th class="border border-gray-300 px-2">Alumno</th>
                                 <th class="border border-gray-300 px-2">Edad</th>
+                                <th class="border border-gray-300 px-2">Ver</th>
+                                <th class="border border-gray-300 px-2">Editar</th>
+                                <th class="border border-gray-300 px-2">Remover Alumno</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="text-center" v-for="(student, index) in students" :key="index">
-                                <td class="border border-gray-300 px-2">
-                                   {{ student.id }}
-                                </td>
                                 <td class="border border-gray-300 px-2">
                                     <a class="text-blue-500 underline" :href="route('students.show', student.id)">
                                         {{ student.first_name }} {{ student.last_name }}
@@ -44,6 +45,15 @@
                                 </td>
                                 <td class="border border-gray-300 px-2">
                                     {{ student.age }}
+                                </td>
+                                <td class="border border-gray-300 px-2">
+                                    <ShowBtn :routeName="'students.show'" :model="student">Ver</ShowBtn>
+                                </td>
+                                <td class="border border-gray-300 px-2">
+                                    <EditBtn :routeName="'students.show'" :model="student">Editar</EditBtn>
+                                </td>
+                                <td class="border border-gray-300 px-2">
+                                    REMOVER BTN
                                 </td>
                             </tr>
                         </tbody>
@@ -53,9 +63,9 @@
                 <div v-else>
                     <p class="mt-3 text-lg mx-auto"> No hay alumnos para mostrar por el momento.</p>
 
-                    <Link class="mt-2 bg-gray-800 rounded-md font-bold text-white px-4" :href="route('courseStudents.create', course,id)" method="get" as="button" type="button">
-                        Agregar Alumno 
-                    </Link>
+                    <div class="mx-auto mt-2">
+                        <ShowBtn :routeName="'courseStudents.create'" :model="course">+ Alumno</ShowBtn>
+                    </div>
                 </div>
 
             </div>
@@ -66,12 +76,16 @@
 <script>
 
 import Layout from '../../Layouts/AppLayout'
+import ShowBtn from '../../Components/ShowBtn.vue'
+import EditBtn from '../../Components/EditBtn.vue'
 import { Link } from '@inertiajs/inertia-vue3'
 import { ref } from 'vue'
 
 export default {
     components: {
         Layout,
+        ShowBtn,
+        EditBtn,
         Link,
     },
     props: {

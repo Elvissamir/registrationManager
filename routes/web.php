@@ -54,11 +54,7 @@ Route::get('subjects/{subject}/teachers/create', [SubjectTeachersController::cla
 // COURSES
 Route::resource('courses', CoursesController::class)->middleware('auth:sanctum');
 
-// COURSES SUBJECTS
-Route::get('courses/{course}/subjects', [CourseSubjectsController::class, 'show'])
-     ->name('courseSubjects.show')
-     ->middleware('auth:sanctum');
-    
+// COURSES SUBJECTS    
 Route::get('courses/{course}/subjects/create', [CourseSubjectsController::class, 'create'])
      ->name('courseSubjects.create')
      ->middleware('auth:sanctum');
@@ -67,7 +63,7 @@ Route::post('courses/{course}/subjects', [CourseSubjectsController::class, 'stor
      ->name('courseSubjects.store')
      ->middleware('auth:sanctum');
 
-// COURSES STUDENTS
+// COURSE STUDENTS
 Route::get('courses/{course}/students', [CourseStudentsController::class, 'show'])
      ->name('courseStudents.show')
      ->middleware('auth:sanctum');

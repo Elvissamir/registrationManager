@@ -34,7 +34,7 @@ class PostCourseSubjectTest extends TestCase
         $this->assertEquals($subjectA->id, $course->subjects[0]->id);
         $this->assertEquals($subjectA->title, $course->subjects[0]->title);
 
-        $response->assertRedirect(route('courseSubjects.show', $course->id));
+        $response->assertRedirect(route('courses.show', $course->id));
     }
 
     public function test_guests_can_not_add_a_subject_to_a_course()

@@ -42,13 +42,7 @@
                     </table>
 
                     <!-- PAGINATION --> 
-                    <div class="flex justify-center mx-auto mt-10 mb-5">
-                        <Link class="bg-green-700 text-white px-4 rounded-md text-lg font-bold" :href="students.links.first" method="get" as="button" type="button">First</Link>
-                        <Link class="bg-green-700 text-white ml-2 px-4 rounded-md text-lg font-bold" :href="students.links.prev" method="get" as="button" type="button">Prev</Link>
-                        <div class="flex items-center border border-gray-400 ml-2 px-2 text-lg font-bold rounded-full">{{ students.meta.current_page }}</div>
-                        <Link class="bg-green-700 text-white ml-2 px-4 rounded-md text-lg font-bold" :href="students.links.next" method="get" as="button" type="button">Next</Link>
-                        <Link class="bg-green-700 text-white ml-2 px-4 rounded-md text-lg font-bold" :href="students.links.last" method="get" as="button" type="button">Last</Link>
-                    </div>
+                    <Pagination :model="students"></Pagination>
                 </div>
 
                 <div v-else>
@@ -65,8 +59,9 @@
 
 <script>
 
-import { Link } from '@inertiajs/inertia-vue3'
 import Layout from '../../Layouts/AppLayout'
+import { Link } from '@inertiajs/inertia-vue3'
+import Pagination from '../../Components/Pagination.vue'
 import GetBtn from '../../Components/GetBtn'
 import EditBtn from '../../Components/EditBtn'
 import ShowBtn from '../../Components/ShowBtn'
@@ -75,6 +70,7 @@ import { ref } from 'vue'
 export default {
     components: {
         Layout,
+        Pagination,
         GetBtn,
         ShowBtn,
         EditBtn,

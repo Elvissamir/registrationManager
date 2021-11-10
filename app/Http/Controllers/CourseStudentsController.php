@@ -58,9 +58,12 @@ class CourseStudentsController extends Controller
      */
     public function show(Course $course)
     {
+        $course->load(['section', 'degree']);
+        $students = $course->students()->orderBy('first_name', 'asc')->orderBy('last_name', 'asc')->paginate(10);
+
         return Inertia::render('CourseStudents/Show', [
             'course' => new CourseResource($course),
-            'students' => StudentResource::collection($course->students),
+            'students' => StudentResource::collection($students),
         ]);
     }
 

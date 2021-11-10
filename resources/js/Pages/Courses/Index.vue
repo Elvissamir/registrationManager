@@ -4,9 +4,7 @@
             <div class="flex flex-col m-auto p-6 my-8 bg-white w-10/12">
                 <div class="flex flex-row">
                     <h1 class="text-2xl">Cursos Disponibles:</h1>
-                    <Link class="ml-auto bg-gray-800 rounded-md font-bold text-white px-4" :href="route('courses.create')" method="get" as="button" type="button">
-                        Crear Curso
-                    </Link>
+                    <GetBtn :routeName="'courses.create'"></GetBtn>
                 </div>
 
                 <div v-if="hasCourses">
@@ -18,12 +16,14 @@
                                 <th class="border border-gray-300 px-2">Grado</th>
                                 <th class="border border-gray-300 px-2">Periodo</th>
                                 <th class="border border-gray-300 px-2">Estado</th>
-                                <th class="border border-gray-300 px-2">Agregar Materia</th>
-                                <th class="border border-gray-300 px-2">Agregar Alumno</th>
+                                <th class="border border-gray-300 px-2">Ver</th>
+                                <th class="border border-gray-300 px-2">Editar</th>
+                                <th class="border border-gray-300 px-2">+ Materia</th>
+                                <th class="border border-gray-300 px-2">+ Alumno</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="text-center" v-for="(course, index) in courses" :key="index">
+                            <tr class="text-center" v-for="(course, index) in courses.data" :key="index">
                                 <td class="border border-gray-300 px-2">
                                     <a class="text-blue-500 underline" :href="route('courses.show', course.id)">
                                         {{ course.id }}
@@ -45,20 +45,31 @@
                                     </div>
                                 </td>
 
+                                <td class="border border-gray-300 px-2">
+                                    <ShowBtn :routeName="'courses.create'" :model="course">Ver</ShowBtn>
+                                </td>
+
+                                <td class="border border-gray-300 px-2">
+                                    <EditBtn :routeName="'courses.edit'" :model="course">Editar</EditBtn>
+                                </td>
+
                                 <td class="h-12 justify-center items-center border border-gray-300 px-2">
                                     <Link class="text-sm bg-gray-800 rounded-md font-bold text-white py-1 px-4" :href="route('courseSubjects.create', course.id)" method="get" as="button" type="button">
-                                        Agregar Materia
+                                        + Materia
                                     </Link>
                                 </td>
 
                                 <td class="h-12 justify-center items-center border border-gray-300 px-2">
                                     <Link class="text-sm bg-gray-800 rounded-md font-bold text-white py-1 px-4" :href="route('courseStudents.create', course.id)" method="get" as="button" type="button">
-                                        Agregar Alumno
+                                        + Alumno
                                     </Link>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
+
+                    <!-- PAGINATION --> 
+                    <Pagination :model="courses"></Pagination>
                 </div>
 
                 <div v-else>
@@ -78,12 +89,19 @@
 
 import Layout from '../../Layouts/AppLayout'
 import { Link } from '@inertiajs/inertia-vue3'
+import Pagination from '../../Components/Pagination.vue'
+import GetBtn from '../../Components/GetBtn.vue'
+import ShowBtn from '../../Components/ShowBtn.vue'
+import EditBtn from '../../Components/EditBtn.vue'
 import { ref } from 'vue'
 
 export default {
     components: {
         Layout,
         Link,
+        ShowBtn,
+        EditBtn,
+        Pagination,
     },
     props: {
         courses: {
@@ -92,6 +110,8 @@ export default {
         }
     },
     setup(props) {
+
+        console.log(props.courses);
 
         const hasCourses = ref(true);
 

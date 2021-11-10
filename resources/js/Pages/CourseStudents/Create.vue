@@ -33,13 +33,11 @@
 
 import Layout from '../../Layouts/AppLayout'
 import { Inertia } from '@inertiajs/inertia'
-import { Link } from '@inertiajs/inertia-vue3'
 import { ref } from 'vue'
 
 export default {
     components: {
         Layout,
-        Link,
     },
     props: {
         course: {

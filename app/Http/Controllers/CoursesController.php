@@ -72,8 +72,11 @@ class CoursesController extends Controller
     {
         $course->load(['degree', 'section', 'subjects' => function ($q) { $q->orderBy('title', 'asc'); }]);
 
+        $studentsCount = $course->students()->count();
+
         return Inertia::render('Courses/Show', [
             'course' => new CourseResource($course),
+            'studentsCount' => $studentsCount,
         ]);
     }
 
@@ -85,6 +88,8 @@ class CoursesController extends Controller
      */
     public function edit(Course $course)
     {
+        $course->load(['section', 'degree']);
+
         $sections = Section::all();
         $degrees = Degree::all();
 

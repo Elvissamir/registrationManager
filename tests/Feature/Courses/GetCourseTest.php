@@ -5,6 +5,7 @@ namespace Tests\Feature\Courses;
 use Carbon\Carbon;
 use Tests\TestCase;
 use App\Models\Course;
+use App\Models\Student;
 use App\Models\Subject;
 use Inertia\Testing\Assert;
 use App\Http\Resources\CourseResource;
@@ -55,7 +56,12 @@ class GetCourseTest extends TestCase
         $subjectB = Subject::factory()->create(['title' => 'B Subject']);
         $subjectA = Subject::factory()->create(['title' => 'A Subject']);
 
+        $studentA = Student::factory()->create();
+        $studentB = Student::factory()->create();
+
         $course = Course::factory()->create();
+
+        $course->students()->attach([$studentA->id, $studentB->id]);
 
         $course->subjects()->attach([$subjectC->id, $subjectB->id, $subjectA->id]);
 
@@ -64,6 +70,7 @@ class GetCourseTest extends TestCase
         $response->assertInertia(fn(Assert $page) => 
             $page->component('Courses/Show')
                  ->where('course.id', $course->id)
+                 ->where('studentsCount', $course->students()->count())
                  ->where('course.degree.title', $course->degree->title)
                  ->where('course.section.name', $course->section->name)
                  ->where('course.subjects.0.title', $subjectA->title)

@@ -22,7 +22,10 @@ class PutCourseTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $course = Course::factory()->create();
+        $degree = Degree::factory()->create();
+        $section = Section::factory()->create();
+
+        $course = Course::factory()->create(['section_id' => $section->id, 'degree_id' => $degree->id]);
 
         $sections = Section::all();
         $degrees = Degree::all();
@@ -31,7 +34,9 @@ class PutCourseTest extends TestCase
 
         $response->assertInertia(fn(Assert $page) => 
             $page->component('Courses/Edit')
-                 ->where('course', new CourseResource($course->refresh()))
+                 ->where('course.id', $course->id)
+                 ->where('course.degree.title', $degree->title)
+                 ->where('course.section.name', $section->name)
                  ->where('sections', SectionResource::collection($sections))
                  ->where('degrees', DegreeResource::collection($degrees)));
     }
