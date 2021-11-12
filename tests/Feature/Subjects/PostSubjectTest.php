@@ -121,5 +121,24 @@ class PostSubjectTest extends TestCase
         $response->assertRedirect();
     }
 
+    public function test_the_credit_field_must_be_a_number()
+    {
+        // $this->withoutExceptionHandling();
+
+        $subjectData = [
+            'title' => 'Subject Title',
+            'credits' => 'A'
+        ];
+
+        $this->assertDatabaseCount('subjects', 0);
+
+        $response = $this->actingAs($this->user())->post(route('subjects.store'), $subjectData);
+
+        $this->assertDatabaseCount('subjects', 0);
+
+        $response->assertSessionHasErrors('credits');
+        $response->assertRedirect();
+    }
+
 
 }

@@ -4,7 +4,7 @@
             <div class="flex flex-col m-auto p-6 my-8 bg-white w-10/12">
                 <div class="flex flex-row">
                     <h1 class="text-2xl">Cursos Disponibles:</h1>
-                    <GetBtn :routeName="'courses.create'"></GetBtn>
+                    <GetBtn :routeName="'courses.create'">Crear Curso</GetBtn>
                 </div>
 
                 <div v-if="hasCourses">
@@ -46,7 +46,7 @@
                                 </td>
 
                                 <td class="border border-gray-300 px-2">
-                                    <ShowBtn :routeName="'courses.create'" :model="course">Ver</ShowBtn>
+                                    <ShowBtn :routeName="'courses.show'" :model="course">Ver</ShowBtn>
                                 </td>
 
                                 <td class="border border-gray-300 px-2">
@@ -54,13 +54,13 @@
                                 </td>
 
                                 <td class="h-12 justify-center items-center border border-gray-300 px-2">
-                                    <Link class="text-sm bg-gray-800 rounded-md font-bold text-white py-1 px-4" :href="route('courseSubjects.create', course.id)" method="get" as="button" type="button">
+                                    <Link class="ml-auto bg-gray-800 rounded-md font-bold text-white px-4" :href="route('courseSubjects.create', course.id)" method="get" as="button" type="button">
                                         + Materia
                                     </Link>
                                 </td>
 
                                 <td class="h-12 justify-center items-center border border-gray-300 px-2">
-                                    <Link class="text-sm bg-gray-800 rounded-md font-bold text-white py-1 px-4" :href="route('courseStudents.create', course.id)" method="get" as="button" type="button">
+                                    <Link class="ml-auto bg-gray-800 rounded-md font-bold text-white px-4" :href="route('courseStudents.create', course.id)" method="get" as="button" type="button">
                                         + Alumno
                                     </Link>
                                 </td>
@@ -75,9 +75,11 @@
                 <div v-else>
                     <p class="mt-3 text-lg"> No hay alumnos para mostrar por el momento.</p>
 
-                    <Link class="mt-2 bg-gray-800 rounded-md font-bold text-white px-4" :href="route('courses.create')" method="get" as="button" type="button">
-                        Crear Curso
-                    </Link>
+                    <div class="mx-auto mt-3">
+                        <Link class="mt-2 bg-gray-800 rounded-md font-bold text-white px-4" :href="route('courses.create')" method="get" as="button" type="button">
+                            Crear Curso
+                        </Link>
+                    </div>
                 </div>
 
             </div>
@@ -102,6 +104,7 @@ export default {
         ShowBtn,
         EditBtn,
         Pagination,
+        GetBtn,
     },
     props: {
         courses: {

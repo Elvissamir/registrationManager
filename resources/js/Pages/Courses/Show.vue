@@ -29,12 +29,9 @@
                     </div>
                     <div class="flex">
                         <p class="text-lg">Cantidad de Alumnos: {{ studentsCount }}</p>
-                        <div class="">
-                            <Link v-if="studentsCount > 0" class="bg-gray-800 rounded-md font-bold text-white px-4 ml-2" :href="route('courseStudents.show', course.id)" 
-                                  method="get" as="button" type="button">Ver Alumnos</Link>     
-
-                            <Link class="bg-gray-800 rounded-md font-bold text-white px-4 ml-2" :href="route('courseStudents.create', course.id)" 
-                                  method="get" as="button" type="button">Agregar Alumno</Link>
+                        <div class="">   
+                            <ShowBtn v-if="studentsCount > 0" :routeName="'courseStudents.show'" :model="course">Ver Alumnos</ShowBtn>
+                            <ShowBtn :routeName="'courseStudents.create'" :model="course">+ Alumno</ShowBtn>
                         </div>
                     </div>  
                     <p class="text-lg"></p>
@@ -66,19 +63,15 @@
                                     <td class="border border-gray-300 px-2">
                                         <ShowBtn :routeName="'courses.show'" :model="course">Ver</ShowBtn>
                                     </td>
-                                    <td class="border border-gray-300 px-2">
-                                       COLOCAR BOTON 
-                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
 
-                    <div v-else class="flex mx-auto mt-2">
-                        <p class="text-lg">Este curso no tiene materias asignadas.</p>
+                    <div v-else class="flex flex-col mx-auto mt-2">
+                        <p class="text-lg mx-auto">Este curso no tiene materias asignadas.</p>
                         <div class="mx-auto mt-3">
-                            <Link class="bg-gray-800 rounded-md font-bold text-white px-4" :href="route('courseSubjects.create', course.id)" 
-                                  method="get" as="button" type="button">Agregar Materia</Link>
+                            <ShowBtn :routeName="'courseSubjects.create'" :model="course">+ Materia</ShowBtn>
                         </div>
                     </div>
                 </div>
@@ -91,7 +84,6 @@
 <script>
 
 import { ref } from 'vue'
-import { Link } from '@inertiajs/inertia-vue3'
 import Layout from '../../Layouts/AppLayout'
 import DeleteBtn from '../../Components/DeleteBtn'
 import EditBtn from '../../Components/EditBtn'
@@ -103,14 +95,13 @@ export default {
         ShowBtn,
         EditBtn,
         DeleteBtn,
-        Link,
     },
     props: {
         course: {
             required: true,
             type: Object,
         },
-        studentCount: {
+        studentsCount: {
             required: true,
             type: Number,
         }

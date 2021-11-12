@@ -18,16 +18,18 @@ class StudentsController extends Controller
 
         if (array_key_exists('orderBy', $request->query()))
         {
-            if ($request->query('orderBy') == 'name') {
-                $students = Student::orderBy('first_name', 'asc')->orderBy('last_name', 'asc')->paginate(10);
-                $students->appends(['orderBy' => 'name']);
-                $order = 'name';
-            }
-                
-            else if ($request->query('orderBy') == 'registration') {
+
+            if ($request->query('orderBy') == 'registration') {
+
                 $students = Student::orderBy('created_at', 'desc')->paginate(10);
                 $students->appends(['orderBy' => 'registration']);
                 $order = 'registration';
+            }
+
+            else {
+                $students = Student::orderBy('first_name', 'asc')->orderBy('last_name', 'asc')->paginate(10);
+                $students->appends(['orderBy' => 'name']);
+                $order = 'name';    
             }
         }
         else 

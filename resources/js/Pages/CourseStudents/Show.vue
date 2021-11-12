@@ -3,7 +3,7 @@
         <Layout>
             <div class="flex flex-col m-auto p-6 my-8 bg-white w-8/12">
                 <div class="flex flex-row">
-                    <h1 class="text-2xl">Curso {{ course.degree.title }} {{ course.degree.level }} {{ course.section.name }}</h1>
+                    <h1 class="text-2xl font-bold">Curso {{ course.degree.title }} {{ course.degree.level }} {{ course.section.name }}</h1>
                     <ShowBtn :routeName="'courseStudents.create'" :model="course">+ Alumno</ShowBtn>
                 </div>
 
@@ -37,7 +37,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="text-center" v-for="(student, index) in students" :key="index">
+                            <tr class="text-center" v-for="(student, index) in students.data" :key="index">
                                 <td class="border border-gray-300 px-2">
                                     <a class="text-blue-500 underline" :href="route('students.show', student.id)">
                                         {{ student.first_name }} {{ student.last_name }}
@@ -50,17 +50,20 @@
                                     <ShowBtn :routeName="'students.show'" :model="student">Ver</ShowBtn>
                                 </td>
                                 <td class="border border-gray-300 px-2">
-                                    <EditBtn :routeName="'students.show'" :model="student">Editar</EditBtn>
+                                    <EditBtn :routeName="'students.edit'" :model="student">Editar</EditBtn>
                                 </td>
                                 <td class="border border-gray-300 px-2">
-                                    REMOVER BTN
+                                    <Link class="border bg-red-800 px-4 rounded-md text-lg text-white font-bold" :href="`/courses/${course.id}/students/${student.id}`" method="delete" as="button" type="button">Remover</Link>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
+
+                    <!-- PAGINATION --> 
+                    <Pagination :model="students"></Pagination>
                 </div>
 
-                <div v-else>
+                <div class="flex flex-col" v-else>
                     <p class="mt-3 text-lg mx-auto"> No hay alumnos para mostrar por el momento.</p>
 
                     <div class="mx-auto mt-2">
@@ -75,11 +78,12 @@
 
 <script>
 
+import { ref } from 'vue'
 import Layout from '../../Layouts/AppLayout'
+import { Link } from '@inertiajs/inertia-vue3'
 import ShowBtn from '../../Components/ShowBtn.vue'
 import EditBtn from '../../Components/EditBtn.vue'
-import { Link } from '@inertiajs/inertia-vue3'
-import { ref } from 'vue'
+import Pagination from '../../Components/Pagination.vue'
 
 export default {
     components: {
@@ -87,6 +91,7 @@ export default {
         ShowBtn,
         EditBtn,
         Link,
+        Pagination,
     },
     props: {
         course: {

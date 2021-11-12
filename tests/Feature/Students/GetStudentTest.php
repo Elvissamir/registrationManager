@@ -21,16 +21,20 @@ class GetStudentTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        Student::factory()->count(4)->create();
+        $studentB = Student::factory()->create(['first_name' => 'Abin', 'last_name' => 'Carglon']);
+        $studentC = Student::factory()->create(['first_name' => 'Aaron', 'last_name' => 'Daniels']);
+        $studentA = Student::factory()->create(['first_name' => 'Al', 'last_name' => 'Birhen']);
+        $studentD = Student::factory()->create(['first_name' => 'Bobby', 'last_name' => 'Angels']);
 
         $response = $this->actingAs($this->user())->get(route('students.index'));
 
-        $students = Student::paginate(10);
-
         $response->assertInertia(fn(Assert $page) => 
             $page->component('Students/Index')
-                ->has('students')
-                ->where('students', StudentResource::collection($students))
+                ->where('students.data.0.first_name', $studentB->first_name)
+                ->where('students.data.1.first_name', $studentC->first_name)
+                ->where('students.data.2.first_name', $studentA->first_name)
+                ->where('students.data.3.first_name', $studentD->first_name)
+                ->where('students.links.first', 'http://servm.test/students?page=1')
                 ->where('order', 'id')
         );
     }
@@ -46,14 +50,12 @@ class GetStudentTest extends TestCase
 
         $response = $this->actingAs($this->user())->get('/students?orderBy=name');
 
-        $students = Student::orderBy('first_name', 'asc')->orderBy('last_name', 'asc')->paginate(10);
-        $students->appends(['orderBy' => 'name']);
-
         $response->assertInertia(fn(Assert $page) => 
             $page->component('Students/Index')
-                ->has('students')
-                ->where('students', StudentResource::collection($students))
                 ->where('students.data.0.first_name', $studentC->first_name)
+                ->where('students.data.1.first_name', $studentB->first_name)
+                ->where('students.data.2.first_name', $studentA->first_name)
+                ->where('students.data.3.first_name', $studentD->first_name)
                 ->where('students.links.first', 'http://servm.test/students?orderBy=name&page=1')
                 ->where('order', 'name')
             );
