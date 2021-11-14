@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Inertia\Inertia;
+use App\Models\Subject;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 use App\Http\Resources\TeacherResource;
 use App\Http\Requests\StoreTeacherRequest;
+use App\Http\Requests\UpdateTeacherRequest;
 
 class TeacherController extends Controller
 {
@@ -17,7 +19,7 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        $teachers = Teacher::all();
+        $teachers = Teacher::orderBy('first_name', 'asc')->orderBy('last_name', 'asc')->paginate(10);
 
         return Inertia::render('Teachers/Index', [
             'teachers' => TeacherResource::collection($teachers),
@@ -55,6 +57,8 @@ class TeacherController extends Controller
      */
     public function show(Teacher $teacher)
     {
+        $teacher->load('subjects');
+
         return Inertia::render('Teachers/Show', [
             'teacher' => new TeacherResource($teacher),
         ]);
@@ -68,7 +72,9 @@ class TeacherController extends Controller
      */
     public function edit(Teacher $teacher)
     {
-        //
+        return Inertia::render('Teachers/Edit', [
+            'teacher' => new TeacherResource($teacher),
+        ]);
     }
 
     /**
@@ -78,9 +84,11 @@ class TeacherController extends Controller
      * @param  \App\Models\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Teacher $teacher)
+    public function update(UpdateTeacherRequest $request, Teacher $teacher)
     {
-        //
+        $teacher->update($request->validated());
+
+        return redirect(route('teachers.index'));
     }
 
     /**

@@ -140,7 +140,7 @@ class PostTeacherTest extends TestCase
         $response->assertRedirect();
     }
 
-    public function test_the_first_name_must_have_more_than_two_letters() 
+    public function test_the_first_name_must_have_at_least_than_two_letters() 
     {
         //$this->withoutExceptionHandling();
 
@@ -175,7 +175,7 @@ class PostTeacherTest extends TestCase
     }
 
 
-    public function test_the_last_name_must_have_more_than_two_letters() 
+    public function test_the_last_name_must_have_at_least_than_two_letters() 
     {
         //$this->withoutExceptionHandling();
 

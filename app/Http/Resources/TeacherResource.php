@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\SubjectResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class TeacherResource extends JsonResource
@@ -16,6 +17,7 @@ class TeacherResource extends JsonResource
     {
         return [
             'id'=> $this->id,
+            'subjects' => SubjectResource::collection($this->whenLoaded('subjects')),
             'first_name' => $this->first_name,
             'last_name' => $this->last_name,
             'ci' => $this->ci,

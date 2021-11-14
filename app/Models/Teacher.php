@@ -9,6 +9,12 @@ class Teacher extends Model
 {
     use HasFactory;
 
-    // PROPERTIES
+    // Properties
     protected $fillable = ['first_name', 'last_name', 'age', 'ci', 'phone_mobile', 'phone_house'];
+
+    // Relationships
+    public function subjects() 
+    {
+       return $this->belongsToMany(Subject::class);
+    }
 }
