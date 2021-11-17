@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\TeacherResource;
 use App\Http\Requests\StoreTeacherRequest;
 use App\Http\Requests\UpdateTeacherRequest;
+use App\Exceptions\CanNotDeleteAssignedTeacher;
 
 class TeacherController extends Controller
 {
@@ -99,6 +100,16 @@ class TeacherController extends Controller
      */
     public function destroy(Teacher $teacher)
     {
-        //
+        try {
+            $teacher->delete();
+        }
+        catch (CanNotDeleteAssignedTeacher $exception)
+        {
+            return Inertia::render('Exceptions/Teachers/Assigned', [
+                'exception' => $exception->getMessage(),
+            ]);
+        }
+
+        return redirect(route('teachers.index'));
     }
 }
