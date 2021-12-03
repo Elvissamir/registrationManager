@@ -1,14 +1,14 @@
 <template>
   <div>
         <Layout>
-            <div class="flex flex-col m-auto p-6 my-8 bg-white w-10/12">
+            <Container :width="'w-10/12'">
                 <div class="flex flex-row">
-                    <h1 class="text-2xl">Cursos Disponibles:</h1>
-                    <GetBtn :routeName="'courses.create'">Crear Curso</GetBtn>
+                    <Title>Cursos Disponibles</Title>
+                    <GetBtn class="ml-auto" :routeName="'courses.create'">Crear Curso</GetBtn>
                 </div>
 
-                <div v-if="hasCourses">
-                    <table class="border-collapse border border-gray-300 mt-4 text-lg w-full">
+                   <div v-if="hasCourses">
+                    <table class="border-collapse border border-gray-300 mt-6 text-lg w-full">
                         <thead>
                             <tr class="text-center">
                                 <th class="border border-gray-300 px-2">Id</th>
@@ -81,8 +81,7 @@
                         </Link>
                     </div>
                 </div>
-
-            </div>
+            </Container>
         </Layout>
     </div>
 </template>
@@ -90,6 +89,8 @@
 <script>
 
 import Layout from '../../Layouts/AppLayout'
+import Container from '../../Components/Container.vue'
+import Title from '../../Components/Title.vue'
 import { Link } from '@inertiajs/inertia-vue3'
 import Pagination from '../../Components/Pagination.vue'
 import GetBtn from '../../Components/GetBtn.vue'
@@ -100,6 +101,8 @@ import { ref } from 'vue'
 export default {
     components: {
         Layout,
+        Container,
+        Title,
         Link,
         ShowBtn,
         EditBtn,

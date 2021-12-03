@@ -4,7 +4,7 @@
 
         <jet-banner />
 
-        <div class="min-h-screen bg-green-900">
+        <div class="min-h-screen bg-green-900 bg-opacity-80">
             <nav class="bg-white border-b border-gray-100">
                 <!-- Primary Navigation Menu -->
                 <div class="mx-auto md:w-10/12">

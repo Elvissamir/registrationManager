@@ -1,9 +1,9 @@
 <template>
   <div>
         <Layout>
-            <div class="flex flex-col m-auto p-6 my-8 bg-white w-6/12">
+            <Container :width="'w-6/12'">
                 <div class="flex flex-row">
-                    <h1 class="text-2xl font-black">Grado: {{ degree.title }} {{ degree.level }}</h1>
+                    <Title>Grado: {{ degree.title }} {{ degree.level }}</Title>
                     <div class="flex justify-between ml-auto">
                         <EditBtn class="mr-3" :routeName="'degrees.edit'" :model="degree">Editar</EditBtn>
 
@@ -13,11 +13,11 @@
                     </div>
                 </div>
 
-                <div class="flex flex-col justify-between mt-3">
+                <div class="flex flex-col justify-between mt-4">
                     <div class="flex flex-col">
-                        <p class="text-xl">Lista de Cursos del Grado {{ degree.title }} {{ degree.level }}</p>
+                        <p class="text-xl font-bold">Lista de Cursos del Grado {{ degree.title }} {{ degree.level }}</p>
 
-                        <table class="border-collapse border border-gray-300 mt-4 text-lg w-full">
+                        <table class="border-collapse border border-gray-300 mt-6 text-lg w-full">
                             <thead>
                                 <tr class="text-center">
                                     <th class="border border-gray-300 px-2">Id</th>
@@ -47,7 +47,7 @@
                         
                     </div>
                 </div>
-            </div>
+            </Container>
         </Layout>
     </div>
 </template>
@@ -55,6 +55,8 @@
 <script>
 
 import Layout from '../../Layouts/AppLayout'
+import Container from '../../Components/Container'
+import Title from '../../Components/Title'
 import ShowBtn from '../../Components/ShowBtn'
 import EditBtn from '../../Components/EditBtn'
 import DeleteBtn from '../../Components/DeleteBtn'
@@ -62,6 +64,8 @@ import DeleteBtn from '../../Components/DeleteBtn'
 export default {
     components: {
         Layout,
+        Container,
+        Title,
         ShowBtn,
         EditBtn,
         DeleteBtn,

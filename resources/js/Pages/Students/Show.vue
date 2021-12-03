@@ -1,9 +1,9 @@
 <template>
   <div>
         <Layout>
-            <div class="flex flex-col m-auto p-6 my-8 bg-white w-6/12">
+            <Container :width="'w-6/12'">
                 <div class="flex flex-row">
-                    <h1 class="text-2xl font-bold">Alumno: {{ student.first_name }} {{ student.last_name }}</h1>
+                    <Title class="text-2xl font-bold">Alumno: {{ student.first_name }} {{ student.last_name }}</Title>
                     <div class="flex ml-auto">
                         <EditBtn class="mr-2" :routeName="'students.edit'" :model="student">Editar</EditBtn>
                         <DeleteBtn v-if="hasActiveCourses == false && hasFinishedCourses == false" :routeName="'students.destroy'" :model="student" :circle="false">Eliminar</DeleteBtn>
@@ -24,7 +24,7 @@
                 <div class="flex flex-col mt-5">
 					<p class="text-xl font-bold">Cursos Activos: </p>
                     <div v-if="hasActiveCourses" class="flex">
-                        <table class="border-collapse border border-gray-300 mt-3 text-lg w-full">
+                        <table class="border-collapse border border-gray-300 mt-6 text-lg w-full">
                             <thead>
                                 <tr class="text-center">
                                     <th class="border border-gray-300 px-2 py-1">Curso</th>
@@ -66,7 +66,7 @@
 					<p class="text-xl font-bold">Cursos Finalizados: </p>
 
                     <div v-if="hasFinishedCourses">
-                        <table class="border-collapse border border-gray-300 mt-3 text-lg w-full">
+                        <table class="border-collapse border border-gray-300 mt-6 text-lg w-full">
                             <thead>
                                 <tr class="text-center">
                                     <th class="border border-gray-300 px-2 py-1">Curso</th>
@@ -102,15 +102,17 @@
                         <p class="text-lg">El alumno {{ student.first_name }} {{ student.last_name }} no ha finalizado ningun curso.</p>
                     </div>
                 </div>
-            </div>
+            </Container>
         </Layout>
     </div>
 </template>
 
 <script>
 
-import { ref } from 'vue'
 import Layout from '../../Layouts/AppLayout'
+import Container from '../../Components/Container'
+import Title from '../../Components/Title'
+import { ref } from 'vue'
 import DeleteBtn from '../../Components/DeleteBtn'
 import EditBtn from '../../Components/EditBtn'
 import ShowBtn from '../../Components/ShowBtn'
@@ -118,6 +120,8 @@ import ShowBtn from '../../Components/ShowBtn'
 export default {
     components: {
         Layout,
+        Container, 
+        Title,
         ShowBtn,
         EditBtn,
         DeleteBtn,

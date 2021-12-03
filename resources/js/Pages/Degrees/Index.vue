@@ -1,16 +1,14 @@
 <template>
   <div>
         <Layout>
-            <div class="flex flex-col mx-auto mt-8 w-6/12">
-                <div class="w-full bg-white p-6">
+            <Container :width="'w-6/12'">
                     <div class="flex flex-row">
-                        <h1 class="text-2xl">Grados Disponibles:</h1>
-                       
+                        <Title>Grados Disponibles:</Title>
                         <GetBtn :routeName="'degrees.create'">Crear Grado</GetBtn>
                     </div>
 
                     <div v-if="hasDegrees">
-                        <table class="border-collapse border border-gray-300 mt-4 text-lg w-full">
+                        <table class="border-collapse border border-gray-300 mt-6 text-lg w-full">
                             <thead>
                                 <tr class="text-center">
                                     <th class="border border-gray-300 px-2">Titulo</th>
@@ -42,8 +40,7 @@
                         <p class="mt-3 text-lg"> No hay grados para mostrar por el momento.</p>
                         <GetBtn :routeName="'degrees.create'">Crear Grado</GetBtn>
                     </div>
-                </div>
-            </div>
+            </Container>
         </Layout>
     </div>
 </template>
@@ -51,15 +48,19 @@
 
 <script>
 
+import Layout from '../../Layouts/AppLayout'
+import Container from '../../Components/Container'
+import Title from '../../Components/Title'
 import GetBtn from '../../Components/GetBtn.vue'
 import EditBtn from '../../Components/EditBtn.vue'
 import ShowBtn from '../../Components/ShowBtn.vue'
-import Layout from '../../Layouts/AppLayout'
 import { ref } from 'vue'
 
 export default {
     components: {
         Layout,
+        Container,
+        Title,
         GetBtn,
         ShowBtn,
         EditBtn,

@@ -1,9 +1,9 @@
 <template>
   <div>
          <Layout>
-            <div class="flex flex-col max-w-md shadow-md rounded px-8 pt-6 pb-8 my-8 mx-auto bg-white">
+            <Container :width="'w-4/12'">
                 <div class="flex flex-row text-2xl">
-                    <h1>Registrar Profesor </h1>
+                    <Title>Registrar Profesor </Title>
                 </div>
 
                 <div class="flex mt-4">
@@ -47,21 +47,25 @@
                         <button class="bg-gray-800 text-white font-bold py-2 px-4 mt-4 rounded focus:outline-none focus:shadow-outline" type="submit">Registrar</button>
                     </form>
                 </div>
-            </div>
+            </Container>
         </Layout>
     </div>
 </template>
 
 <script>
 
-import { Inertia } from '@inertiajs/inertia'
 import Layout from '../../Layouts/AppLayout'
+import Container from '../../Components/Container'
+import Title from '../../Components/Title'
+import { Inertia } from '@inertiajs/inertia'
 import { Link } from '@inertiajs/inertia-vue3'
 import { ref } from 'vue'
 
 export default {
     components: {
         Layout,
+        Container,
+        Title,
         Link,
     },
     props: {

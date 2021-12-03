@@ -1,10 +1,10 @@
 <template>
   <div>
         <Layout>
-            <div class="flex flex-col m-auto p-6 my-8 bg-white w-8/12">
+            <Container :width="'w-8/12'">
                 <div class="flex flex-row">
-                    <h1 class="text-2xl font-bold">Curso {{ course.degree.title }} {{ course.degree.level }} {{ course.section.name }}</h1>
-                    <ShowBtn :routeName="'courseStudents.create'" :model="course">+ Alumno</ShowBtn>
+                    <Title>Curso {{ course.degree.title }} {{ course.degree.level }} {{ course.section.name }}</Title>
+                    <ShowBtn class="ml-auto" :routeName="'courseStudents.create'" :model="course">+ Alumno</ShowBtn>
                 </div>
 
                 <div class="mt-4">
@@ -16,17 +16,21 @@
                     <div class="flex">
                         <p class="text-lg">Estado: </p>
                         <div v-if="course.status == 'active'">
-                            <p class="text-lg">Activo</p>
+                            <p class="text-lg ml-2">Activo</p>
                         </div>
 
                         <div v-else>
-                            <p class="text-lg">Finalizado</p>
+                            <p class="text-lg ml-2">Finalizado</p>
                         </div>
                     </div>
                 </div>
 
+                <div class="mt-8">
+                    <Title>Alumnos Registrados en el Curso: </Title>
+                </div>
+
                 <div v-if="hasStudents">
-                    <table class="border-collapse border border-gray-300 mt-4 text-lg w-full">
+                    <table class="border-collapse border border-gray-300 mt-6 text-lg w-full">
                         <thead>
                             <tr class="text-center">
                                 <th class="border border-gray-300 px-2">Alumno</th>
@@ -63,15 +67,14 @@
                     <Pagination :model="students"></Pagination>
                 </div>
 
-                <div class="flex flex-col" v-else>
-                    <p class="mt-3 text-lg mx-auto"> No hay alumnos para mostrar por el momento.</p>
+                <div class="flex flex-col mt-3" v-else>
+                    <p class="text-lg mx-auto"> No hay alumnos para mostrar por el momento.</p>
 
                     <div class="mx-auto mt-2">
                         <ShowBtn :routeName="'courseStudents.create'" :model="course">+ Alumno</ShowBtn>
                     </div>
                 </div>
-
-            </div>
+            </Container>
         </Layout>
     </div>
 </template>
@@ -80,6 +83,8 @@
 
 import { ref } from 'vue'
 import Layout from '../../Layouts/AppLayout'
+import Container from '../../Components/Container.vue'
+import Title from '../../Components/Title'
 import { Link } from '@inertiajs/inertia-vue3'
 import ShowBtn from '../../Components/ShowBtn.vue'
 import EditBtn from '../../Components/EditBtn.vue'
@@ -88,6 +93,8 @@ import Pagination from '../../Components/Pagination.vue'
 export default {
     components: {
         Layout,
+        Container,
+        Title,
         ShowBtn,
         EditBtn,
         Link,

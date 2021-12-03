@@ -1,21 +1,46 @@
 <template>
   <div>
         <Layout>
-            <div class="flex flex-col m-auto p-6 my-8 bg-white w-6/12">
+            <Container :width="'w-6/12'">
                 <div class="flex flex-row">
-                    <h1 class="text-2xl">Materia: {{ subject.title }}</h1>
-                    <Link class="ml-auto bg-gray-800 font-bold rounded-md text-white px-4" :href="route('subjects.create')" method="get" as="button" type="button">
-                        Crear Materia
-                    </Link>
+                    <Title>Materia: {{ subject.title }}</Title>
+                    <div class="flex ml-auto">
+                        <ShowBtn :routeName="'subjects.edit'" :model="subject">Editar</ShowBtn>
+                    </div>
                 </div>
 
-                <div class="flex justify-between mt-3">
-                    <p>Id: {{ subject.id }}</p>
-                    <p>titulo: {{ subject.title }}</p>
-                    <p>creditos: {{ subject.credits }}</p>
-                    <p>creada: {{ subject.created_at }}</p>
+                <div class="flex flex-col justify-between mt-3">
+                    <p>Titulo: {{ subject.title }}</p>
+                    <p>Creditos: {{ subject.credits }}</p>
+                    <p>Creada: {{ subject.created_at }}</p>
                 </div>
-            </div>
+
+                <div class="flex flex-col mt-3">
+                    <p class="text-xl font-bold">Profesores Asignados: </p>
+                    <table class="border-collapse border border-gray-300 mt-4 text-lg w-full">
+                        <thead>
+                            <tr class="text-center">
+                               <th class="border border-gray-300 px-2 py-1">
+                                   Nombre
+                                </th>
+                                <th class="border border-gray-300 px-2">
+                                    Ver
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="text-center" v-for="(teacher, index) in teachers.data" :key="index">
+                                <td class="border border-gray-300 px-2">
+                                    {{ teacher.first_name }} {{ teacher.last_name }}
+                                </td>
+                                <td class="border border-gray-300 px-2">
+                                    <ShowBtn :routeName="'teachers.show'" :model="teacher">Ver</ShowBtn>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </Container>
         </Layout>
     </div>
 </template>
@@ -23,16 +48,26 @@
 <script>
 
 import Layout from '../../Layouts/AppLayout'
+import Container from '../../Components/Container'
+import Title from '../../Components/Title'
 import { Link } from '@inertiajs/inertia-vue3'
+import ShowBtn from '../../Components/ShowBtn'
 
 export default {
     components: {
         Layout,
+        Container, 
+        Title,
         Link,
+        ShowBtn,
     },
     props: {
         subject: {
             required: false,
+            type: Object,
+        },
+        teachers: {
+            required: true,
             type: Object,
         }
     },

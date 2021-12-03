@@ -1,14 +1,14 @@
 <template>
   <div>
         <Layout>
-            <div class="flex flex-col m-auto p-6 my-8 bg-white w-6/12">
+            <Container :width="'w-6/12'">
                 <div class="flex flex-row">
-                    <h1 class="text-2xl font-black">Alumnos Registrados:</h1>
+                    <Title>Alumnos Registrados:</Title>
                     <GetBtn :routeName="'students.create'">Registrar Alumno</GetBtn>
                 </div>
 
                 <div v-if="hasStudents">
-                    <table class="border-collapse border border-gray-300 mt-4 text-lg w-full">
+                    <table class="border-collapse border border-gray-300 mt-6 text-lg w-full">
                         <thead>
                             <tr class="text-center">
                                 <th class="border border-gray-300 px-2 py-1">
@@ -52,7 +52,7 @@
                     </div>
                 </div>
 
-            </div>
+            </Container>
         </Layout>
     </div>
 </template>
@@ -60,6 +60,8 @@
 <script>
 
 import Layout from '../../Layouts/AppLayout'
+import Container from '../../Components/Container'
+import Title from '../../Components/Title'
 import { Link } from '@inertiajs/inertia-vue3'
 import Pagination from '../../Components/Pagination.vue'
 import GetBtn from '../../Components/GetBtn'
@@ -70,6 +72,8 @@ import { ref } from 'vue'
 export default {
     components: {
         Layout,
+        Container, 
+        Title,
         Pagination,
         GetBtn,
         ShowBtn,

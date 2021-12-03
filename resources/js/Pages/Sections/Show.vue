@@ -1,9 +1,9 @@
 <template>
   <div>
         <Layout>
-            <div class="flex flex-col m-auto p-6 my-8 bg-white w-6/12">
+            <Container :width="'w-6/12'">
                 <div class="flex flex-row">
-                    <h1 class="text-2xl font-black">Seccion: {{ section.name }}</h1>
+                    <Title>Seccion: {{ section.name }}</Title>
                     <DeleteBtn v-if="!(courses.length > 0)" :routeName="'sections.destroy'" :model="section" :circle="false">
                         Eliminar
                     </DeleteBtn>
@@ -11,9 +11,9 @@
 
                 <div class="flex flex-col justify-between mt-3">
                     <div class="flex flex-col">
-                        <p class="text-xl">Lista de Cursos de la Seccion {{ section.name }}</p>
+                        <p class="text-xl font-bold">Lista de Cursos de la Seccion {{ section.name }}</p>
 
-                        <table class="border-collapse border border-gray-300 mt-4 text-lg w-full">
+                        <table class="border-collapse border border-gray-300 mt-6 text-lg w-full">
                             <thead>
                                 <tr class="text-center">
                                     <th class="border border-gray-300 px-2">Id</th>
@@ -43,7 +43,7 @@
                         
                     </div>
                 </div>
-            </div>
+            </Container>
         </Layout>
     </div>
 </template>
@@ -51,12 +51,16 @@
 <script>
 
 import Layout from '../../Layouts/AppLayout'
+import Container from '../../Components/Container'
+import Title from '../../Components/Title'
 import ShowBtn from '../../Components/ShowBtn'
 import DeleteBtn from '../../Components/DeleteBtn'
 
 export default {
     components: {
         Layout,
+        Container, 
+        Title,
         ShowBtn,
         DeleteBtn,
     },

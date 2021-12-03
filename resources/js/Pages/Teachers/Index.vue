@@ -1,41 +1,40 @@
 <template>
   <div>
         <Layout>
-            <div class="flex flex-col m-auto p-6 my-8 bg-white w-6/12">
+            <Container :width="'w-6/12'">
                 <div class="flex flex-row">
-                    <h1 class="text-2xl">Profesores Registrados:</h1>
-                    <Link class="ml-auto bg-gray-800 rounded-md font-bold text-white px-4" :href="route('teachers.create')" method="get" as="button" type="button">
-                        Registrar Profesor
-                    </Link>
+                    <Title>Profesores Registrados:</Title>
+                    <div class="flex ml-auto">
+                        <GetBtn :routeName="'teachers.create'">Registrar Profesor</GetBtn>
+                    </div>
                 </div>
 
                 <div v-if="hasTeachers">
                     <table class="border-collapse border border-gray-300 mt-4 text-lg w-full">
                         <thead>
                             <tr class="text-center">
-                                <th class="border border-gray-300 px-2">Id</th>
-                                <th class="border border-gray-300 px-2">Nombre Completo</th>
-                                <th class="border border-gray-300 px-2">Ci</th>
-                                <th class="border border-gray-300 px-2">Edad</th>
+                                <th class="border border-gray-300 px-2">Nombre</th>
+                                <th class="border border-gray-300 px-2">Ver</th>
+                                <th class="border border-gray-300 px-2">Editar</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="text-center" v-for="(teacher, index) in teachers" :key="index">
-                                <td class="border border-gray-300 px-2">{{ teacher.id }}</td>
-                                <td class="border border-gray-300 px-2">
-                                    <a class="text-blue-500 underline" :href="route('teachers.show', teacher.id)">
-                                        {{ teacher.first_name }} {{ teacher.last_name }}
-                                    </a>
+                            <tr class="text-center" v-for="(teacher, index) in teachers.data" :key="index">
+                                <td class="border border-gray-300 px-2 py-1">
+                                   {{ teacher.first_name }} {{ teacher.last_name }}
                                 </td>
                                 <td class="border border-gray-300 px-2">
-                                    {{ teacher.ci }}
-                                </td> 
+                                    <ShowBtn :routeName="'teachers.show'" :model="teacher">Ver</ShowBtn>
+                                </td>
                                 <td class="border border-gray-300 px-2">
-                                    {{ teacher.age }}
+                                    <ShowBtn :routeName="'teachers.edit'" :model="teacher">Editar</ShowBtn>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
+
+                    <!-- PAGINATION --> 
+                    <Pagination :model="teachers"></Pagination>
                 </div>
 
                 <div v-else>
@@ -46,7 +45,7 @@
                     </Link>
                 </div>
 
-            </div>
+            </Container>
         </Layout>
     </div>
 </template>
@@ -54,13 +53,23 @@
 <script>
 
 import Layout from '../../Layouts/AppLayout'
+import Container from '../../Components/Container'
+import Title from '../../Components/Title'
+import GetBtn from '../../Components/GetBtn.vue'
+import ShowBtn from '../../Components/ShowBtn.vue'
+import Pagination from '../../Components/Pagination.vue'
 import { Link } from '@inertiajs/inertia-vue3'
 import { ref } from 'vue'
 
 export default {
     components: {
         Layout,
+        Container,
+        Title,
         Link,
+        GetBtn,
+        ShowBtn,
+        Pagination,
     },
     props: {
         teachers: {

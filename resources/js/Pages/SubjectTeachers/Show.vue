@@ -1,9 +1,9 @@
 <template>
   <div>
         <Layout>
-            <div class="flex flex-col m-auto p-6 my-8 bg-white w-6/12">
+            <Container :width="'w-6/12'">
                 <div class="flex flex-row">
-                    <h1 class="text-2xl">Materia: {{ subject.title }}</h1>
+                    <Title>Materia: {{ subject.title }}</Title>
                     <Link class="ml-auto bg-gray-800 rounded-md font-bold text-white px-4" :href="route('subjectTeachers.create', subject.id)" method="get" as="button" type="button">
                         Asignar Profesor
                     </Link>
@@ -49,7 +49,7 @@
                     </Link>
                 </div>
 
-            </div>
+            </Container>
         </Layout>
     </div>
 </template>
@@ -57,12 +57,16 @@
 <script>
 
 import Layout from '../../Layouts/AppLayout'
+import Container from '../../Components/Container'
+import Title from '../../Components/Title'
 import { Link } from '@inertiajs/inertia-vue3'
 import { ref } from 'vue'
 
 export default {
     components: {
         Layout,
+        Container, 
+        Title,
         Link,
     },
     props: {
