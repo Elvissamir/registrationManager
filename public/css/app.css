@@ -1404,6 +1404,9 @@ select {
 .cursor-pointer {
 	cursor: pointer;
 }
+.cursor-not-allowed {
+	cursor: not-allowed;
+}
 .list-inside {
 	list-style-position: inside;
 }
@@ -1561,6 +1564,10 @@ select {
 	--tw-border-opacity: 1;
 	border-color: rgba(156, 163, 175, var(--tw-border-opacity));
 }
+.border-green-700 {
+	--tw-border-opacity: 1;
+	border-color: rgba(4, 120, 87, var(--tw-border-opacity));
+}
 .border-green-600 {
 	--tw-border-opacity: 1;
 	border-color: rgba(5, 150, 105, var(--tw-border-opacity));
@@ -1620,6 +1627,10 @@ select {
 .bg-green-700 {
 	--tw-bg-opacity: 1;
 	background-color: rgba(4, 120, 87, var(--tw-bg-opacity));
+}
+.bg-gray-400 {
+	--tw-bg-opacity: 1;
+	background-color: rgba(156, 163, 175, var(--tw-bg-opacity));
 }
 .bg-green-900 {
 	--tw-bg-opacity: 1;
@@ -2026,6 +2037,10 @@ select {
 	--tw-bg-opacity: 1;
 	background-color: rgba(249, 250, 251, var(--tw-bg-opacity));
 }
+.hover\:bg-white:hover {
+	--tw-bg-opacity: 1;
+	background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+}
 .hover\:text-gray-500:hover {
 	--tw-text-opacity: 1;
 	color: rgba(107, 114, 128, var(--tw-text-opacity));
@@ -2045,6 +2060,10 @@ select {
 .hover\:text-gray-900:hover {
 	--tw-text-opacity: 1;
 	color: rgba(17, 24, 39, var(--tw-text-opacity));
+}
+.hover\:text-green-700:hover {
+	--tw-text-opacity: 1;
+	color: rgba(4, 120, 87, var(--tw-text-opacity));
 }
 .focus\:z-10:focus {
 	z-index: 10;
