@@ -5,6 +5,7 @@ namespace Tests\Feature\CourseStudent;
 use Tests\TestCase;
 use App\Models\Course;
 use App\Models\Student;
+use App\Models\Subject;
 use Inertia\Testing\Assert;
 use App\Http\Resources\CourseResource;
 use App\Http\Resources\StudentResource;
@@ -62,7 +63,53 @@ class PostCourseStudentTest extends TestCase
         $response->assertRedirect(route('courseStudents.show', $course->id));
     }
 
-  
+    public function test_a_student_can_only_enroll_on_active_courses()
+    {
+        $this->withoutExceptionHandling();
+
+        $course = Course::factory()->create(['status' => 'finished']);
+        $student = Student::factory()->create();
+
+        $enrollData = [
+            'student_id' => $student->id,
+        ];
+
+        $this->assertEquals($course->students()->count(), 0);
+
+        $response = $this->actingAs($this->user())->post(route('courseStudents.store', $course->id), $enrollData);
+
+        $this->assertEquals($course->students()->count(), 0);
+
+        $response->assertRedirect(route('courseStudents.show', $course->id));
+    }
+
+    public function test_when_the_student_is_enrolled_on_a_course_he_is_assigned_to_the_course_subjects()
+    {
+        $this->withoutExceptionHandling();
+
+        $student = Student::factory()->create();
+
+        $course = Course::factory()->create();
+
+        $subjectA = Subject::factory()->create();
+        $subjectB = SUbject::factory()->create();
+        $subjectC = Subject::factory()->create();
+        $subjectD = Subject::factory()->create();
+
+        $course->subjects()->attach([$subjectA->id, $subjectB->id, $subjectC->id]);
+
+        $enrollData = [
+            'student_id' => $student->id,
+        ];
+
+        $response = $this->actingAs($this->user())->post(route('courseStudents.store', $course->id), $enrollData);
+
+        $this->assertEquals($course->subjects()->count(), $student->subjects()->count());
+        $this->assertEquals($subjectA->title, $student->subjects[0]->title);
+        $this->assertEquals($subjectB->title, $student->subjects[1]->title);
+        $this->assertEquals($subjectC->title, $student->subjects[2]->title);
+    }
+
     public function test_guests_can_not_enroll_students_on_courses()
     {
         // $this->withoutExceptionHandling();

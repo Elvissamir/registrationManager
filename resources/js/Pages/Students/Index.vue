@@ -12,12 +12,10 @@
                         <thead>
                             <tr class="text-center">
                                 <th class="border border-gray-300 px-2 py-1">
-                                    <Link class="border border-gray-500 px-4 rounded-md text-lg font-bold" :class="[(order == 'name')? 'bg-green-200 text-gray-400 border-none' : '']" 
-                                          :href="'/students?orderBy=name'" method="get" as="button" type="button">Nombre</Link>
+                                    <OrderByBtn :name="'Nombre'" :option="'name'" :url="'/students?orderBy=name'" :order="order"></OrderByBtn>
                                 </th>
                                 <th class="border border-gray-300 px-2">
-                                    <Link class="border border-gray-500 px-4 rounded-md text-lg font-bold" :class="[(order == 'registration')? 'bg-green-200 text-gray-400 border-none' : '']"
-                                          :href="'/students?orderBy=registration'" method="get" as="button" type="button">Registro</Link>
+                                    <OrderByBtn  :name="'Registro'" :option="'registration'" :url="'/students?orderBy=registration'" :order="order"></OrderByBtn>
                                 </th>
                                 <th class="border border-gray-300 px-2">Ver</th>
                                 <th class="border border-gray-300 px-2">Editar</th>
@@ -62,6 +60,7 @@
 import Layout from '../../Layouts/AppLayout'
 import Container from '../../Components/Container'
 import Title from '../../Components/Title'
+import OrderByBtn from '../../Components/OrderByBtn.vue'
 import { Link } from '@inertiajs/inertia-vue3'
 import Pagination from '../../Components/Pagination.vue'
 import GetBtn from '../../Components/GetBtn'
@@ -78,6 +77,7 @@ export default {
         GetBtn,
         ShowBtn,
         EditBtn,
+        OrderByBtn,
         Link,
     },
     props: {

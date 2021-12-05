@@ -24,7 +24,7 @@
                             </div>
 
                             <!-- Navigation Links -->
-                            <div class="space-x-8 ml-12 flex items-center justify-center">
+                            <div class="space-x-6 ml-12 flex items-center justify-center">
                                  <jet-nav-link class="font-bold text-base" :href="route('courses.index')" :active="route().current('courses.index')">
                                     Cursos
                                  </jet-nav-link>

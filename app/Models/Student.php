@@ -23,10 +23,24 @@ class Student extends Model
         })->get();
     }
 
+    public function currentCourse()
+    {
+        $studentId = $this->id;
+
+        return Course::where('status', 'active')->whereHas('students', function ($query) use($studentId) {
+            $query->where('students.id', $studentId);
+        })->with(['degree', 'section', 'subjects'])->get()[0];
+    }
+
     // Relationships
     public function courses()
     {
         return $this->belongsToMany(Course::class);
+    }
+
+    public function subjects()
+    {
+        return $this->belongsToMany(Subject::class);
     }
 
     // Events

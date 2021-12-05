@@ -9,21 +9,21 @@
     </div>
 
     <div class="flex justify-center mx-auto mt-3 mb-5">
-        <Link class="bg-green-700 text-white px-4 border border-green-700 rounded-md text-lg font-bold hover:bg-white hover:text-green-700" :href="model.links.first" method="get" as="button" type="button">First</Link>
+        <Link class="bg-green-700 text-white px-4 border border-green-700 rounded-md text-lg font-bold hover:bg-white hover:text-green-700" :href="model.links.first" method="get" as="button" type="button">Primera</Link>
         
         <div class="ml-2">
-            <Link v-if="showPrev" class="bg-green-700 text-white px-4 border border-green-700  rounded-md text-lg font-bold hover:bg-white hover:text-green-700" :href="model.links.prev" method="get" as="button" type="button">Prev</Link>
-            <button v-else class="bg-gray-400 cursor-not-allowed text-white px-4 rounded-md text-lg font-bold" disabled>Prev</button>
+            <Link v-if="showPrev" class="bg-green-700 text-white px-4 border border-green-700  rounded-md text-lg font-bold hover:bg-white hover:text-green-700" :href="model.links.prev" method="get" as="button" type="button">Anterior</Link>
+            <Link v-else class="bg-gray-400 cursor-not-allowed text-white px-4 border border-green-700 rounded-md text-lg font-bold" :href="''" method="get" as="button" type="button">Anterior</Link>
         </div>
         
-        <div class="flex items-center border border-gray-400 ml-2 px-2 text-lg font-bold rounded-full">{{ model.meta.current_page }}</div>
+        <div class="flex items-center border border-gray-400 ml-2 px-2 text-base font-bold rounded-full">{{ model.meta.current_page }}</div>
         
-        <div class="ml-1">
-            <Link v-if="showNext" class="bg-green-700 text-white px-4 border border-green-700  rounded-md text-lg font-bold hover:bg-white hover:text-green-700" :href="model.links.next" method="get" as="button" type="button">Next</Link>
-            <button v-else class="bg-gray-400 cursor-not-allowed text-white px-4 rounded-md text-lg font-bold" disabled>Next</button>
+        <div class="ml-2">
+            <Link v-if="showNext" class="bg-green-700 text-white px-4 border border-green-700  rounded-md text-lg font-bold hover:bg-white hover:text-green-700" :href="model.links.next" method="get" as="button" type="button">Siguiente</Link>
+            <Link v-else class="bg-gray-400 cursor-not-allowed text-white px-4 border border-green-700  rounded-md text-lg font-bold" :href="''" method="get" as="button" type="button">Siguiente</Link>
         </div>
 
-        <Link class="bg-green-700 text-white ml-2 px-4 border border-green-700  rounded-md text-lg font-bold hover:bg-white hover:text-green-700" :href="model.links.last" method="get" as="button" type="button">Last</Link>
+        <Link class="bg-green-700 text-white ml-2 px-4 border border-green-700  rounded-md text-lg font-bold hover:bg-white hover:text-green-700" :href="model.links.last" method="get" as="button" type="button">Ultima</Link>
     </div>
 </template>
 

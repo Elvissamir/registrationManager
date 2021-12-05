@@ -45,7 +45,18 @@ class CourseStudentsController extends Controller
      */
     public function store(EnrollStudentRequest $request, Course $course)
     {
-        $course->students()->attach($request->student_id);
+        if ($course->status == 'finished')
+            return redirect(route('courseStudents.show', $course->id));
+
+        $course->load(['students', 'subjects']);
+        $course->students()->attach($request->validated()['student_id']);
+
+        $student = Student::find($request->validated()['student_id'])->first();
+        
+        foreach ($course->subjects as $subject) 
+        {
+            $student->subjects()->attach($subject->id);
+        }
         
         return redirect(route('courseStudents.show', $course->id));
     }
@@ -96,8 +107,19 @@ class CourseStudentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Course $course, Student $student)
     {
-        //
+        if ($course->status == 'finished')
+            return redirect(route('courseStudents.show', $course->id));
+
+        $course->load(['students', 'subjects']);
+        $course->students()->detach($student->id);
+
+        foreach ($course->subjects as $subject)
+        {
+            $student->subjects()->detach($subject->id);
+        }
+
+        return redirect(route('courseStudents.show', $course->id));
     }
 }

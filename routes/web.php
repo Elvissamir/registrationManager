@@ -72,6 +72,10 @@ Route::post('courses/{course}/students', [CourseStudentsController::class, 'stor
      ->name('courseStudents.store')
      ->middleware('auth:sanctum');
 
+Route::delete('courses/{course}/students/{student}', [CourseStudentsController::class, 'destroy'])
+     ->name('courseStudents.destroy')
+     ->middleware('auth:sanctum');
+
 Route::get('courses/{course}/students/create', [CourseStudentsController::class, 'create'])
      ->name('courseStudents.create')
      ->middleware('auth:sanctum');
