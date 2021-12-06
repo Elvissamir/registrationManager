@@ -64,20 +64,24 @@ Route::post('courses/{course}/subjects', [CourseSubjectsController::class, 'stor
      ->middleware('auth:sanctum');
 
 // COURSE STUDENTS
-Route::get('courses/{course}/students', [CourseStudentsController::class, 'show'])
-     ->name('courseStudents.show')
+Route::get('courses/{course}/students', [CourseStudentsController::class, 'index'])
+     ->name('courseStudents.index')
      ->middleware('auth:sanctum');
 
 Route::post('courses/{course}/students', [CourseStudentsController::class, 'store'])
      ->name('courseStudents.store')
      ->middleware('auth:sanctum');
 
-Route::delete('courses/{course}/students/{student}', [CourseStudentsController::class, 'destroy'])
-     ->name('courseStudents.destroy')
-     ->middleware('auth:sanctum');
-
 Route::get('courses/{course}/students/create', [CourseStudentsController::class, 'create'])
      ->name('courseStudents.create')
+     ->middleware('auth:sanctum');
+
+Route::get('courses/{course}/students/{student}', [CourseStudentsController::class, 'show'])
+     ->name('courseStudents.show')
+     ->middleware('auth:sanctum');
+
+Route::delete('courses/{course}/students/{student}', [CourseStudentsController::class, 'destroy'])
+     ->name('courseStudents.destroy')
      ->middleware('auth:sanctum');
 
 // TEACHERS

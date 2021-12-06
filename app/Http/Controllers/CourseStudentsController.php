@@ -17,9 +17,15 @@ class CourseStudentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Course $course)
     {
-        //
+        $course->load(['section', 'degree']);
+        $students = $course->students()->orderBy('first_name', 'asc')->orderBy('last_name', 'asc')->paginate(10);
+
+        return Inertia::render('CourseStudents/Index', [
+            'course' => new CourseResource($course),
+            'students' => StudentResource::collection($students),
+        ]);
     }
 
     /**
@@ -46,19 +52,22 @@ class CourseStudentsController extends Controller
     public function store(EnrollStudentRequest $request, Course $course)
     {
         if ($course->status == 'finished')
-            return redirect(route('courseStudents.show', $course->id));
+            return redirect(route('courseStudents.index', $course->id));
+        
+        $student = Student::find($request->validated()['student_id']);
+
+        if ($student->currentCourse() != Null)
+            return redirect(route('courseStudents.index', $course->id));
 
         $course->load(['students', 'subjects']);
-        $course->students()->attach($request->validated()['student_id']);
-
-        $student = Student::find($request->validated()['student_id'])->first();
+        $course->students()->attach($student->id);
         
         foreach ($course->subjects as $subject) 
         {
             $student->subjects()->attach($subject->id);
         }
         
-        return redirect(route('courseStudents.show', $course->id));
+        return redirect(route('courseStudents.index', $course->id));
     }
 
     /**
@@ -67,14 +76,24 @@ class CourseStudentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Course $course)
+    public function show(Course $course, Student $student)
     {
-        $course->load(['section', 'degree']);
-        $students = $course->students()->orderBy('first_name', 'asc')->orderBy('last_name', 'asc')->paginate(10);
+        $course->load(['degree', 'section', 'subjects']);
+        
+        $courseSubjectsIds = [];
+        
+        foreach ($course->subjects as $subject)
+        {
+            array_push($courseSubjectsIds, $subject->id);
+        }
+        
+        $student->load(['subjects' => function ($query) use($courseSubjectsIds) {
+            $query->whereIn('subjects.id', $courseSubjectsIds);
+        }]);
 
         return Inertia::render('CourseStudents/Show', [
             'course' => new CourseResource($course),
-            'students' => StudentResource::collection($students),
+            'student' => new StudentResource($student),
         ]);
     }
 
@@ -110,7 +129,7 @@ class CourseStudentsController extends Controller
     public function destroy(Course $course, Student $student)
     {
         if ($course->status == 'finished')
-            return redirect(route('courseStudents.show', $course->id));
+            return redirect(route('courseStudents.index', $course->id));
 
         $course->load(['students', 'subjects']);
         $course->students()->detach($student->id);
@@ -120,6 +139,6 @@ class CourseStudentsController extends Controller
             $student->subjects()->detach($subject->id);
         }
 
-        return redirect(route('courseStudents.show', $course->id));
+        return redirect(route('courseStudents.index', $course->id));
     }
 }

@@ -27,9 +27,14 @@ class Student extends Model
     {
         $studentId = $this->id;
 
-        return Course::where('status', 'active')->whereHas('students', function ($query) use($studentId) {
+        $currentCourse = Course::where('status', 'active')->whereHas('students', function ($query) use($studentId) {
             $query->where('students.id', $studentId);
-        })->with(['degree', 'section', 'subjects'])->get()[0];
+        })->with(['degree', 'section', 'subjects'])->get();
+
+        if ($currentCourse->count() == 0)
+            return Null;
+        else 
+            return $currentCourse[0];
     }
 
     // Relationships
@@ -40,7 +45,7 @@ class Student extends Model
 
     public function subjects()
     {
-        return $this->belongsToMany(Subject::class);
+        return $this->belongsToMany(Subject::class)->withPivot('first', 'second', 'third', 'fourth');
     }
 
     // Events

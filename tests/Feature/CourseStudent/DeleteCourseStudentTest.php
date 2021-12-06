@@ -26,7 +26,7 @@ class DeleteCourseStudentTest extends TestCase
 
         $this->assertEquals(0, $course->students()->count());
 
-        $response->assertRedirect(route('courseStudents.show', $course->id));
+        $response->assertRedirect(route('courseStudents.index', $course->id));
     }
 
     public function test_a_student_can_not_be_disenrolled_from_finished_courses()
@@ -42,7 +42,7 @@ class DeleteCourseStudentTest extends TestCase
  
         $this->assertEquals(1, $course->students()->count());
  
-        $response->assertRedirect(route('courseStudents.show', $course->id));
+        $response->assertRedirect(route('courseStudents.index', $course->id));
     }
 
    public function test_when_a_student_is_disenrolled_from_a_course_the_student_subject_records_are_deleted()
@@ -64,6 +64,6 @@ class DeleteCourseStudentTest extends TestCase
 
         $this->assertEquals(0, $student->subjects()->count());
 
-        $response->assertRedirect(route('courseStudents.show', $course->id));
+        $response->assertRedirect(route('courseStudents.index', $course->id));
    }
 }

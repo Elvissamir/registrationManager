@@ -17,6 +17,10 @@ class SubjectResource extends JsonResource
         return [
             'id' => $this->id,
             'teachers' => TeacherResource::collection($this->whenLoaded('teachers')),
+            'first' => $this->whenPivotLoaded('student_subject', function () { return $this->pivot->first; }),
+            'second' => $this->whenPivotLoaded('student_subject', function () { return $this->pivot->second; }),
+            'third' => $this->whenPivotLoaded('student_subject', function () { return $this->pivot->third; }),
+            'fourth' => $this->whenPivotLoaded('student_subject', function () { return $this->pivot->fourth; }),
             'title' => $this->title,
             'credits' => $this->credits,
             'created_at' => $this->created_at,

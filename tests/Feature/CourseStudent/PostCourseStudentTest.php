@@ -58,9 +58,40 @@ class PostCourseStudentTest extends TestCase
         $this->assertEquals($course->students()->count(), 1);
 
         $this->assertEquals($course->students[0]->first_name, $studentB->first_name);
-        $this->assertEquals($course->students[0]->first_name, $studentB->first_name);
 
-        $response->assertRedirect(route('courseStudents.show', $course->id));
+        $response->assertRedirect(route('courseStudents.index', $course->id));
+    }
+
+    public function test_a_user_can_not_be_enrolled_on_multiple_active_courses_at_the_same_time()
+    {
+        $this->withoutExceptionHandling();
+
+        $student = Student::factory()->create();
+
+        $subjectA = Subject::factory()->create();
+        $subjectB = SUbject::factory()->create();
+        $subjectC = Subject::factory()->create();
+        $subjectD = Subject::factory()->create();
+
+        $courseA = Course::factory()->create();
+        $courseB = Course::factory()->create();
+
+        $courseA->subjects()->attach([$subjectA->id, $subjectB->id]);
+        $courseB->subjects()->attach([$subjectC->id, $subjectD->id]);
+
+        $enrollData = [
+            'student_id' => $student->id,
+        ];
+
+        $this->assertEquals(0, $courseA->students()->count());
+        
+        $response = $this->actingAs($this->user())->post(route('courseStudents.store', $courseA->id), $enrollData);
+        $response = $this->actingAs($this->user())->post(route('courseStudents.store', $courseB->id), $enrollData);
+
+        $this->assertEquals(1, $courseA->students()->count());
+        $this->assertEquals(0, $courseB->students()->count());
+
+        $response->assertRedirect(route('courseStudents.index', $courseB->id));
     }
 
     public function test_a_student_can_only_enroll_on_active_courses()
@@ -80,7 +111,7 @@ class PostCourseStudentTest extends TestCase
 
         $this->assertEquals($course->students()->count(), 0);
 
-        $response->assertRedirect(route('courseStudents.show', $course->id));
+        $response->assertRedirect(route('courseStudents.index', $course->id));
     }
 
     public function test_when_the_student_is_enrolled_on_a_course_he_is_assigned_to_the_course_subjects()
