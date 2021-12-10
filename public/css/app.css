@@ -1335,14 +1335,14 @@ select {
 .w-8\/12 {
 	width: 66.666667%;
 }
-.w-3\/12 {
-	width: 25%;
-}
 .w-5\/12 {
 	width: 41.666667%;
 }
 .w-6\/12 {
 	width: 50%;
+}
+.w-3\/12 {
+	width: 25%;
 }
 .min-w-0 {
 	min-width: 0px;
@@ -1542,6 +1542,9 @@ select {
 }
 .border-r {
 	border-right-width: 1px;
+}
+.border-r-2 {
+	border-right-width: 2px;
 }
 .border-none {
 	border-style: none;

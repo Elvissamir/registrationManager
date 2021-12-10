@@ -16,7 +16,7 @@
 
                         <div class="flex flex-col mt-3">
                             <label class="block text-gray-700 text-base font-bold mb-2" for="level">Nivel: </label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" id="level" v-model="form.level" />
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" min="0" id="level" v-model="form.level" />
                             <div class="text-red-500 text-sm italic" v-if="errors.level">{{ errors.level }}</div>
                         </div>
 

@@ -42,6 +42,6 @@ class SubjectTeachersController extends Controller
     {
         $subject->teachers()->attach($request->teacher_id);
 
-        return redirect(route('subjectTeachers.show', $subject->id));
+        return redirect(route('subjects.show', $subject->id));
     }
 }

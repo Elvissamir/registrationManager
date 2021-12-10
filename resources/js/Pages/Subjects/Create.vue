@@ -9,14 +9,14 @@
                 <div class="flex mt-4">
                     <form class="w-full" @submit.prevent="submit">
                         <div class="flex flex-col">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="title">Titulo: </label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="title" v-model="form.title" />
+                            <label class="block text-gray-700 text-base font-bold mb-2" for="title">Titulo: </label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="title" v-model="form.title" />
                             <div class="text-red-500 text-xs italic" v-if="errors.title">{{ errors.title }}</div>
                         </div>
 
                         <div class="flex flex-col mt-3">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="credits">Creditos: </label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="credits" v-model="form.credits" />
+                            <label class="block text-gray-700 text-base font-bold mb-2" for="credits">Creditos: </label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" id="credits" v-model="form.credits" />
                             <div class="text-red-500 text-xs italic" v-if="errors.credits">{{ errors.credits }}</div>
                         </div>
 
@@ -30,6 +30,7 @@
 
 <script>
 
+import { Inertia } from '@inertiajs/inertia'
 import Layout from '../../Layouts/AppLayout'
 import Container from '../../Components/Container'
 import Title from '../../Components/Title'

@@ -36,6 +36,7 @@
                                 <th class="border border-gray-300 px-2">Alumno</th>
                                 <th class="border border-gray-300 px-2">Edad</th>
                                 <th class="border border-gray-300 px-2">Ver</th>
+                                <th class="border border-gray-300 px-2">Calificaciones</th>
                                 <th class="border border-gray-300 px-2">Editar</th>
                                 <th class="border border-gray-300 px-2">Remover Alumno</th>
                             </tr>
@@ -52,6 +53,12 @@
                                 </td>
                                 <td class="border border-gray-300 px-2">
                                     <ShowBtn :routeName="'students.show'" :model="student">Ver</ShowBtn>
+                                </td>
+                                <td class="border border-gray-300 px-2">
+                                    <Link class="ml-auto bg-gray-800 rounded-md font-bold text-white px-4" :href="`/courses/${course.id}/students/${student.id}`" 
+                                          method="get" as="button" type="button">
+                                        Calificaciones
+                                    </Link> 
                                 </td>
                                 <td class="border border-gray-300 px-2">
                                     <EditBtn :routeName="'students.edit'" :model="student">Editar</EditBtn>
@@ -114,8 +121,10 @@ export default {
 
         const hasStudents = ref(true);
 
-        if (props.students.length == 0)
+        if (props.students.data.length == 0)
             hasStudents.value = false;
+
+        console.log(props);
 
         return {
             hasStudents,

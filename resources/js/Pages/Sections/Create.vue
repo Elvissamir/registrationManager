@@ -10,7 +10,7 @@
                     <form class="w-full" @submit.prevent="submit">
                         <div class="flex flex-col">
                             <label class="block text-gray-700 text-base font-bold mb-2" for="name">Nombre: </label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" v-model="form.name" />
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="name" v-model="form.name" />
                             <div class="text-red-500 text-sm italic" v-if="errors.name">{{ errors.name }}</div>
                         </div>
 

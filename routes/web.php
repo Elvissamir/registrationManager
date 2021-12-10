@@ -11,6 +11,7 @@ use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\CourseStudentsController;
 use App\Http\Controllers\CourseSubjectsController;
+use App\Http\Controllers\StudentSubjectsController;
 use App\Http\Controllers\SubjectTeachersController;
 
 //
@@ -89,3 +90,12 @@ Route::resource('teachers', TeacherController::class)->middleware('auth:sanctum'
 
 // STUDENTS
 Route::resource('students', StudentsController::class)->middleware('auth:sanctum');
+
+// STUDENT SUBJECTS
+Route::get('students/{student}/subjects/{subject}/edit', [StudentSubjectsController::class, 'edit'])
+     ->name('studentSubjects.edit')
+     ->middleware('auth:sanctum');
+
+Route::put('students/{student}/subjects/{subject}', [StudentSubjectsController::class, 'update'])
+     ->name('studentSubjects.update')
+     ->middleware('auth:sanctum');

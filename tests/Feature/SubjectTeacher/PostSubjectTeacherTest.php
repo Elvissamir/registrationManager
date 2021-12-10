@@ -34,7 +34,7 @@ class PostSubjectTeacherTest extends TestCase
       $this->assertEquals($teacherA->id, $subject->teachers[0]->id);
       $this->assertEquals($teacherA->first_name, $subject->teachers[0]->first_name);
 
-      $response->assertRedirect(route('subjectTeachers.show', $subject->id));
+      $response->assertRedirect(route('subjects.show', $subject->id));
    }
 
    public function test_guests_can_not_assign_a_teacher_to_a_subject()

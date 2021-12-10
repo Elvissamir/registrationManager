@@ -141,6 +141,40 @@ class PostCourseStudentTest extends TestCase
         $this->assertEquals($subjectC->title, $student->subjects[2]->title);
     }
 
+    public function test_if_the_student_has_been_assigned_to_the_subjects_previously_the_scores_are_set_to_zero()
+    {
+        $this->withoutExceptionHandling();
+
+        $student = Student::factory()->create();
+
+        $course = Course::factory()->create();
+
+        $subjectA = Subject::factory()->create();
+        $subjectB = SUbject::factory()->create();
+        $subjectC = Subject::factory()->create();
+        $subjectD = Subject::factory()->create();
+
+        $student->subjects()->attach([
+            $subjectA->id => ['first' => 10, 'second' => 15, 'third' => 20, 'fourth' => 15],
+            $subjectB->id => ['first' => 9, 'second' => 12, 'third' => 18, 'fourth' => 14],
+            $subjectC->id => ['first' => 8, 'second' => 10, 'third' => 17, 'fourth' => 16],
+        ]);
+
+        $course->subjects()->attach([$subjectA->id, $subjectB->id, $subjectC->id]);
+
+        $enrollData = [
+            'student_id' => $student->id,
+        ];
+
+        $response = $this->actingAs($this->user())->post(route('courseStudents.store', $course->id), $enrollData);
+
+        $this->assertEquals(0, $student->subjects[0]->pivot->first);
+        $this->assertEquals(0, $student->subjects[0]->pivot->second);
+        $this->assertEquals(0, $student->subjects[0]->pivot->third);
+        $this->assertEquals(0, $student->subjects[0]->pivot->fourth);
+    }
+
+
     public function test_guests_can_not_enroll_students_on_courses()
     {
         // $this->withoutExceptionHandling();

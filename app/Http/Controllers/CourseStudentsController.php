@@ -59,14 +59,29 @@ class CourseStudentsController extends Controller
         if ($student->currentCourse() != Null)
             return redirect(route('courseStudents.index', $course->id));
 
-        $course->load(['students', 'subjects']);
         $course->students()->attach($student->id);
-        
-        foreach ($course->subjects as $subject) 
+
+        $subjectsToReset = [];
+        $subjectsToAssign = [];
+        $studentSubjectIds = $student->subjects()->allRelatedIds()->toArray();
+        $courseSubjectIds = $course->subjects()->allRelatedIds()->toArray();
+
+        foreach ($courseSubjectIds as $subjectId)
         {
-            $student->subjects()->attach($subject->id);
+            if (in_array($subjectId, $studentSubjectIds))
+                array_push($subjectsToReset, $subjectId);
+            else 
+                array_push($subjectsToAssign, $subjectId);
         }
-        
+
+        if (count($subjectsToReset) > 0) {
+            foreach ($subjectsToReset as $id)
+                $student->subjects()->updateExistingPivot($id, ['first' => 0, 'second' => 0, 'third' => 0, 'fourth' => 0]);
+        }
+
+        if (count($subjectsToAssign) > 0)
+            $student->subjects()->attach($subjectsToAssign);
+
         return redirect(route('courseStudents.index', $course->id));
     }
 

@@ -86,7 +86,7 @@ export default {
         })
 
         function submit() {
-            const url = `/courses/${props.course.id}/edit`;
+            const url = `/courses/${props.course.id}`;
             Inertia.put(url, form.value)
         }
 

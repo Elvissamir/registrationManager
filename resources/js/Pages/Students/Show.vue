@@ -141,8 +141,6 @@ export default {
         }
     },
     setup(props) {
-
-        console.log(props);
        
        const hasActiveCourses = ref(false);
        const hasFinishedCourses = ref(false);

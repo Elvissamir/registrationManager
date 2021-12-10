@@ -30,7 +30,7 @@
                     <div class="flex flex-col">
                         <p class="text-lg">Cantidad de Alumnos: {{ studentsCount }}</p>
                         <div class="flex mt-2">
-                            <ShowBtn class="py-1" v-if="studentsCount > 0" :routeName="'courseStudents.show'" :model="course">Ver Alumnos</ShowBtn>
+                            <ShowBtn class="py-1" v-if="studentsCount > 0" :routeName="'courseStudents.index'" :model="course">Ver Alumnos</ShowBtn>
                             <ShowBtn class="py-1 ml-2" :routeName="'courseStudents.create'" :model="course">+ Alumno</ShowBtn>
                         </div>
                     </div>  

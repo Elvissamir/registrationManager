@@ -10,35 +10,42 @@
                 </div>
 
                 <div class="flex flex-col justify-between mt-3">
-                    <p>Titulo: {{ subject.title }}</p>
-                    <p>Creditos: {{ subject.credits }}</p>
-                    <p>Creada: {{ subject.created_at }}</p>
+                    <p class="text-lg">Titulo: {{ subject.title }}</p>
+                    <p class="text-lg">Creditos: {{ subject.credits }}</p>
+                    <p class="text-lg">Creada: {{ subject.created_at }}</p>
                 </div>
 
                 <div class="flex flex-col mt-3">
                     <p class="text-xl font-bold">Profesores Asignados: </p>
-                    <table class="border-collapse border border-gray-300 mt-4 text-lg w-full">
-                        <thead>
-                            <tr class="text-center">
-                               <th class="border border-gray-300 px-2 py-1">
-                                   Nombre
-                                </th>
-                                <th class="border border-gray-300 px-2">
-                                    Ver
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="text-center" v-for="(teacher, index) in teachers.data" :key="index">
-                                <td class="border border-gray-300 px-2">
-                                    {{ teacher.first_name }} {{ teacher.last_name }}
-                                </td>
-                                <td class="border border-gray-300 px-2">
-                                    <ShowBtn :routeName="'teachers.show'" :model="teacher">Ver</ShowBtn>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+                    <div v-if="hasAssignedTeachers">
+                        <table class="border-collapse border border-gray-300 mt-4 text-lg w-full">
+                            <thead>
+                                <tr class="text-center">
+                                <th class="border border-gray-300 px-2 py-1">
+                                    Nombre
+                                    </th>
+                                    <th class="border border-gray-300 px-2">
+                                        Ver
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="text-center" v-for="(teacher, index) in teachers.data" :key="index">
+                                    <td class="border border-gray-300 px-2">
+                                        {{ teacher.first_name }} {{ teacher.last_name }}
+                                    </td>
+                                    <td class="border border-gray-300 px-2">
+                                        <ShowBtn :routeName="'teachers.show'" :model="teacher">Ver</ShowBtn>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div v-else class="flex mx-auto mt-2">
+                        <p class="text-lg">La materia {{ subject.title }} no tiene profesores asignados.</p>
+                    </div>
                 </div>
             </Container>
         </Layout>
@@ -47,6 +54,7 @@
 
 <script>
 
+import { ref } from 'vue'
 import Layout from '../../Layouts/AppLayout'
 import Container from '../../Components/Container'
 import Title from '../../Components/Title'
@@ -72,7 +80,17 @@ export default {
         }
     },
     setup(props) {
+        
+        const hasAssignedTeachers = ref(false);
        
+        if (props.teachers.data.length > 0)
+	   	    hasAssignedTeachers.value = true;
+
+        console.log(props);
+
+        return {
+            hasAssignedTeachers,
+        }
     },
 }
 </script>

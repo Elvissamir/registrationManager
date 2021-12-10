@@ -9,7 +9,7 @@
                 <div class="flex mt-4">
                     <form class="w-full" @submit.prevent="submit">
                         <div class="flex flex-col">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="first_name">Seleccione el profesor: </label>
+                            <label class="block text-gray-700 text-base font-bold mb-2" for="first_name">Seleccione el profesor: </label>
                             <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"  name="teacher_id" id="teacher_id" v-model="form.teacher_id">
                                 <option v-for="(teacher, index) in teachers" :key="index" :value="teacher.id" >
                                     {{ teacher.first_name }} {{ teacher.last_name }}
