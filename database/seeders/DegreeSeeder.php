@@ -14,26 +14,27 @@ class DegreeSeeder extends Seeder
      */
     public function run()
     {
-        $degreeTitles = [
-            'Preescolar 1',
-            'Preescolar 2',
-            'Preescolar 3',
-            'Primaria 1', 
-            'Primaria 2',
-            'Primaria 3',
-            'Primaria 4',
-            'Primaria 5',
-            'Primaria 6',
-            'Bachillerato 1',
-            'Bachillerato 2',
-            'Bachillerato 3',
-            'Bachillerato 4',
-            'Bachillerato 5',
+        $degrees = [
+            ['title' => 'Preescolar', 'level' => '1'],
+            ['title' => 'Preescolar', 'level' => '2'],
+            ['title' => 'Preescolar', 'level' => '3'],
+            ['title' => 'Primaria', 'level' => '1'],
+            ['title' => 'Primaria', 'level' => '2'],
+            ['title' => 'Primaria', 'level' => '3'],
+            ['title' => 'Primaria', 'level' => '4'],
+            ['title' => 'Primaria', 'level' => '5'],
+            ['title' => 'Primaria', 'level' => '6'],
+            ['title' => 'Bachillerato', 'level' => '1'],
+            ['title' => 'Bachillerato', 'level' => '2'],
+            ['title' => 'Bachillerato', 'level' => '3'],
+            ['title' => 'Bachillerato', 'level' => '4'],
+            ['title' => 'Bachillerato', 'level' => '5'],
+            ['title' => 'Bachillerato', 'level' => '6'],
         ];
 
-        foreach ($degreeTitles as $title)
+        foreach ($degrees as $degree)
         {
-            Degree::factory()->create(['title' => $title]);
+            Degree::factory()->create(['title' => $degree['title'], 'level' => $degree['level']]);
         }
     }
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\SectionsController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\SubjectsController;
+use App\Http\Controllers\DemoUserLoginController;
 use App\Http\Controllers\CourseStudentsController;
 use App\Http\Controllers\CourseSubjectsController;
 use App\Http\Controllers\StudentSubjectsController;
@@ -18,6 +19,10 @@ use App\Http\Controllers\SubjectTeachersController;
 Route::get('/', function () {
      return redirect(route('courses.index'));
 });
+
+// LOGIN AS DEMO
+Route::post('/loginAsDemo', [DemoUserLoginController::class, 'store'])
+     ->name('demoLogin.store');
 
 // SECTIONS
 Route::resource('sections', SectionsController::class)->middleware('auth:sanctum');
