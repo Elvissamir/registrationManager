@@ -1,6 +1,6 @@
 <template>
   <div>
-         <Layout>
+         <Layout :title="'Editar Profesor'">
             <Container :width="'w-4/12'">
                 <div class="flex flex-row text-2xl">
                     <Title>Editar Profesor: {{ teacher.first_name }} {{ teacher.last_name }}</Title>

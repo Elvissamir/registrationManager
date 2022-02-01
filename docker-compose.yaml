@@ -29,8 +29,6 @@ services:
             MYSQL_ROOT_PASSWORD: password
             MYSQL_PASSWORD: password
             MYSQL_USER: user
-            SERVICE_TAGS: dev
-            SERVICE_NAME: mysql
         volumes: 
             - ./mysql/data:/var/lib/mysql
         networks:
@@ -42,7 +40,7 @@ services:
         restart: unless-stopped
         tty: true
         ports: 
-            - 8100:80
+            - 8102:80
         volumes: 
             - ./:/var/www
             - ./nginx/conf:/etc/nginx/conf.d
@@ -50,7 +48,7 @@ services:
             - app-network
 
     npm: 
-        image: node:17-alpine3.12
+        image: node:16-alpine3.14
         container_name: servm_npm
         volumes: 
             - ./:/var/www

@@ -1,6 +1,6 @@
 <template>
   <div>
-          <Layout>
+          <Layout :title="'Crear Materia'">
             <Container :width="'w-3/12'">
                 <div class="flex flex-row text-2xl">
                     <Title>Crear Materia</Title>

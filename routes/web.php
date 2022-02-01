@@ -16,18 +16,8 @@ use App\Http\Controllers\SubjectTeachersController;
 
 //
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+     return redirect(route('courses.index'));
 });
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->name('dashboard');
-
 
 // SECTIONS
 Route::resource('sections', SectionsController::class)->middleware('auth:sanctum');

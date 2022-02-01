@@ -1,6 +1,6 @@
 <template>
   <div>
-        <Layout>
+        <Layout :title="'Cursos'">
             <Container :width="'w-10/12'">
                 <div class="flex flex-row">
                     <Title>Cursos Disponibles</Title>
@@ -116,9 +116,6 @@ export default {
         }
     },
     setup(props) {
-
-        console.log(props.courses);
-
         const hasCourses = ref(true);
 
         if (props.courses.length == 0)

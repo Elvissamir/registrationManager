@@ -1,6 +1,6 @@
 <template>
   <div>
-        <Layout>
+        <Layout :title="'Secciones'">
             <Container :width="'w-6/12'">
                     <div class="flex flex-row">
                         <Title>Secciones Disponibles:</Title>

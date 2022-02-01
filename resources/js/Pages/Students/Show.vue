@@ -1,6 +1,6 @@
 <template>
   <div>
-        <Layout>
+        <Layout :title="'Alumno'"> 
             <Container :width="'w-6/12'">
                 <div class="flex flex-row">
                     <Title class="text-2xl font-bold">Alumno: {{ student.first_name }} {{ student.last_name }}</Title>
@@ -142,16 +142,14 @@ export default {
     },
     setup(props) {
        
-       const hasActiveCourses = ref(false);
-       const hasFinishedCourses = ref(false);
+        const hasActiveCourses = ref(false);
+        const hasFinishedCourses = ref(false);
        
-       if (props.finishedCourses.length > 0)
-	   	hasFinishedCourses.value = true;
+        if (props.finishedCourses.length > 0)
+	   	    hasFinishedCourses.value = true;
        
-       if (props.activeCourses.length > 0)
-        hasActiveCourses.value = true;
-
-        console.log(hasFinishedCourses);
+        if (props.activeCourses.length > 0)
+            hasActiveCourses.value = true;
 
         return {
             hasActiveCourses,

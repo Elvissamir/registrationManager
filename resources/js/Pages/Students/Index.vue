@@ -1,6 +1,6 @@
 <template>
   <div>
-        <Layout>
+        <Layout :title="'Alumnos'">
             <Container :width="'w-6/12'">
                 <div class="flex flex-row">
                     <Title>Alumnos Registrados:</Title>
@@ -91,8 +91,6 @@ export default {
         }
     },
     setup(props) {
-
-        console.log(props.students);
 
         const hasStudents = ref(true);
 

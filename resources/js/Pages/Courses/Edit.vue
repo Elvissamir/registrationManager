@@ -1,6 +1,6 @@
 <template>
   <div>
-         <Layout>
+         <Layout :title="'Editar Curso'">
             <Container :width="'w-3/12'">
                 <div class="flex">
                     <Title>Editar Curso {{ course.degree.title }} {{ course.degree.level }} {{ course.section.name }}</Title>

@@ -1,6 +1,6 @@
 <template>
   <div>
-         <Layout>
+         <Layout :title="'Editar Materia'">
             <Container :width="'w-4/12'">
                 <div class="flex flex-row text-2xl">
                     <Title>Editar Materia: {{ subject.title }}</Title>

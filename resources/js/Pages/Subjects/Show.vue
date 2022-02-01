@@ -1,6 +1,6 @@
 <template>
   <div>
-        <Layout>
+        <Layout :title="'Materia'">
             <Container :width="'w-6/12'">
                 <div class="flex flex-row">
                     <Title>Materia: {{ subject.title }}</Title>
@@ -80,13 +80,10 @@ export default {
         }
     },
     setup(props) {
-        
         const hasAssignedTeachers = ref(false);
        
         if (props.teachers.data.length > 0)
 	   	    hasAssignedTeachers.value = true;
-
-        console.log(props);
 
         return {
             hasAssignedTeachers,

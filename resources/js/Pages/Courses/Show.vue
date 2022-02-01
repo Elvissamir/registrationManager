@@ -1,6 +1,6 @@
 <template>
   <div>
-        <Layout>
+        <Layout :title="'Curso'">
             <Container :width="'w-5/12'">
                 <div class="flex">
                     <Title>Curso {{ course.degree.title }} {{ course.degree.level }} {{ course.section.name }}</Title>
@@ -108,11 +108,8 @@ export default {
         }
     },
     setup(props) {
-       
        const hasStudents = ref(false);
        const hasSubjects = ref(false);
-
-       console.log(props.course.subjects);
        
        if (props.course.subjects.length > 0)
 	   	hasSubjects.value = true;

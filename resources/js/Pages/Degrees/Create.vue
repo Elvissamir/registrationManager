@@ -1,6 +1,6 @@
 <template>
   <div>
-        <Layout>
+        <Layout :title="'Crear Grado'">
             <Container :width="'w-3/12'">
                 <div class="flex">
                     <Title>Crear Grado </Title>

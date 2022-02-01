@@ -3,7 +3,6 @@
 
     <jet-authentication-card>
         <template #logo>
-            <jet-authentication-card-logo />
         </template>
 
         <jet-validation-errors class="mb-4" />
@@ -38,6 +37,13 @@
                 <jet-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Log in
                 </jet-button>
+            </div>
+
+            <p class="mt-8 text-center">Or</p>
+            <div class="mt-3 mb-3 mx-auto w-8/12 border border-t border-gray-200"></div> 
+            <div class="flex justify-between mt-5 mx-auto">
+                <Link :href="route('register')" class="underline text-sm text-gray-600 hover:text-gray-900">Don't have an account?</Link>
+                <Link :href="route('register')" class="text-white rounded-md py-2 px-4 bg-gray-700 hover:bg-gray-600">Register</Link>
             </div>
         </form>
     </jet-authentication-card>

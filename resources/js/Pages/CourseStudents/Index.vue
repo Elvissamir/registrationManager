@@ -124,8 +124,6 @@ export default {
         if (props.students.data.length == 0)
             hasStudents.value = false;
 
-        console.log(props);
-
         return {
             hasStudents,
         }

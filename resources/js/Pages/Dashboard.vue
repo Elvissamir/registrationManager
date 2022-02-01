@@ -1,8 +1,8 @@
 <template>
-    <app-layout title="Dashboard">
+    <app-layout title="Courses">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Dashboard
+                Courses
             </h2>
         </template>
 

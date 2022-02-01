@@ -1,6 +1,6 @@
 <template>
   <div>
-        <Layout>
+        <Layout :title="'Materias'">
             <Container :width="'w-6/12'">
                 <div class="flex flex-row">
                     <Title class="text-2xl">Lista de Materias: </Title>
@@ -91,9 +91,6 @@ export default {
         }
     },
     setup(props) {
-
-        console.log(props.subjects);
-
         const hasSubjects = ref(true);
 
         if (props.subjects.length == 0) {

@@ -1,6 +1,6 @@
 <template>
   <div>
-        <Layout>
+        <Layout :title="'Editar Grado'">
             <Container :width="'w-4/12'">
                 <div class="flex flex-row">
                     <Title>Editar Grado {{ degree.title }} {{ degree.level }} </Title>
