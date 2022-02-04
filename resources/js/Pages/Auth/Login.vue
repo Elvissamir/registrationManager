@@ -2,14 +2,30 @@
     <Head title="Log in" />
 
     <jet-authentication-card>
-        <template #logo>
-        </template>
+
+        <Link class="flex flex-col justify-center mt-2" :href="route('courses.index')">
+            <div class="flex mx-auto">
+                <img class="flex w-16 h-16 rounded-full" src="/images/theLogo.png" alt="">
+            </div>
+            <div class="font-bold flex flex-col justify-center text-center ml-3">
+                <p class="italic">U.E.D Manuel Antonio Carreño</p>
+                <p class="text-sm">Sistema de Gestión y Registro</p>
+            </div>
+        </Link>
 
         <jet-validation-errors class="mb-4" />
 
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
             {{ status }}
         </div>
+
+        <div class="flex flex-col text-center justify-between mt-8 mx-auto">
+            <p>Login as Demo User: </p>
+            <Link :href="loginAsDemoUrl" method="post" as="button" class="text-white font-black text-lg w-32 mx-auto mt-3 rounded-md py-2 px-4 bg-green-800 hover:bg-green-600">Demo</Link>
+        </div>
+
+        <p class="mt-8 text-center">Or</p>
+        <div class="mt-3 mb-3 mx-auto w-8/12 border border-t border-gray-200"></div> 
 
         <form @submit.prevent="submit">
             <div>
@@ -22,28 +38,21 @@
                 <jet-input id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="current-password" />
             </div>
 
-            <div class="block mt-4">
+            <div class="flex justify-between mt-4">
                 <label class="flex items-center">
                     <jet-checkbox name="remember" v-model:checked="form.remember" />
                     <span class="ml-2 text-sm text-gray-600">Remember me</span>
                 </label>
-            </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <Link v-if="canResetPassword" :href="route('password.request')" class="underline text-sm text-gray-600 hover:text-gray-900">
-                    Forgot your password?
-                </Link>
+                <div class="flex items-center justify-end">
+                    <Link v-if="canResetPassword" :href="route('password.request')" class="underline text-sm text-gray-600 hover:text-gray-900">
+                        Forgot your password?
+                    </Link>
 
-                <jet-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Log in
-                </jet-button>
-            </div>
-
-            <p class="mt-8 text-center">Or</p>
-            <div class="mt-3 mb-3 mx-auto w-8/12 border border-t border-gray-200"></div> 
-            <div class="flex justify-between mt-5 mx-auto">
-                <p>Login as Demo User: </p>
-                <Link :href="loginAsDemoUrl" method="post" as="button" class="text-white rounded-md py-2 px-4 bg-gray-700 hover:bg-gray-600">Demo</Link>
+                    <jet-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                        Log in
+                    </jet-button>
+                </div>    
             </div>
 
             <p class="mt-8 text-center">Or</p>
