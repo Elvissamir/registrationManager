@@ -1,5 +1,4 @@
 <template>
-
     <div class="flex mt-8 justify-center text-lg font-bold">
         <p class="">Mostrando </p>
         <p class="ml-1">{{ itemsCount }}</p>
